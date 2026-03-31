@@ -74,6 +74,7 @@ To run this server, you need a GitHub Personal Access Token (PAT).
 | `MCP_HTTP_BEARER_TOKEN` | ❌       | —                                                                      | Basic Bearer Token for HTTP Authentication (when `HTTP_ADDR` is used)                         |
 | `SCAN_CONTENT`          | ❌       | `false`                                                                | Enables content caching to offload GitHub API requests (requires persistent `DATABASE_URL`)   |
 | `MAX_CONTENT_SIZE`      | ❌       | `204800` (200 KB)                                                      | Maximum content size in bytes to cache per file                                               |
+| `GITHUB_WEBHOOK_SECRET` | ❌       | —                                                                      | Enables the `/webhook` endpoint for incremental scans on GitHub events (requires `HTTP_ADDR`) |
 
 ### 1. Running with Go (Stdio)
 
@@ -125,6 +126,55 @@ docker run -p 8080:8080 \
   -e DATABASE_URL="postgres://user:pass@db-host:5432/docscout" \
   ghcr.io/your-username/docscout-mcp:latest
 ```
+
+## GitHub Webhooks (Incremental Scanning)
+
+By default, DocScout-MCP performs a full org scan on startup and repeats it at every `SCAN_INTERVAL`. **Webhooks are an optional enhancement** that trigger an immediate, targeted scan of a single repository the moment a relevant event is pushed — without waiting for the next full cycle.
+
+### How It Works
+
+When `GITHUB_WEBHOOK_SECRET` is set, DocScout-MCP registers a `/webhook` endpoint (requires `HTTP_ADDR`). GitHub sends a signed `POST` request to this endpoint whenever a configured event fires. The server validates the `X-Hub-Signature-256` HMAC-SHA256 signature and, if valid, triggers a background scan of only the affected repository.
+
+Supported event types:
+
+| GitHub Event | Trigger |
+| ------------ | ------- |
+| `push` | A commit was pushed to a branch |
+| `create` | A branch or tag was created |
+| `delete` | A branch or tag was deleted |
+| `repository` | Repository was renamed, archived, or visibility changed |
+
+All other event types (e.g. `ping`, `star`, `issues`) are acknowledged with `200 OK` and ignored.
+
+### Setup
+
+1. **Start the server in HTTP mode** with the webhook secret:
+
+```bash
+export GITHUB_TOKEN="github_pat_11A..."
+export GITHUB_ORG="my-awesome-org"
+export HTTP_ADDR=":8080"
+export DATABASE_URL="sqlite://docscout.db"
+export GITHUB_WEBHOOK_SECRET="a-strong-random-secret"
+
+go run .
+```
+
+2. **Configure the webhook on GitHub**:
+   - Go to your Organization → **Settings** → **Webhooks** → **Add webhook**
+   - Set **Payload URL** to `https://your-host:8080/webhook`
+   - Set **Content type** to `application/json`
+   - Set **Secret** to the same value as `GITHUB_WEBHOOK_SECRET`
+   - Under **Which events?**, select at minimum: `Pushes`, `Branch or tag creation`, `Branch or tag deletion`, `Repositories`
+   - Click **Add webhook**
+
+> **Note:** The `/webhook` path uses its own HMAC-SHA256 authentication and is excluded from Bearer Token auth (`MCP_HTTP_BEARER_TOKEN`). You do **not** need to pass a bearer token when GitHub calls this endpoint.
+
+### Security
+
+- Signatures are verified using `github.ValidatePayload` (constant-time HMAC comparison).
+- Scans are dispatched asynchronously; the HTTP `200 OK` response is returned immediately to GitHub.
+- Background scans are tied to the server's lifecycle context and are cancelled on graceful shutdown.
 
 ## Testing with MCP Inspector
 

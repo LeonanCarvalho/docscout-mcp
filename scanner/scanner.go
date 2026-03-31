@@ -323,6 +323,49 @@ func (s *Scanner) listByUser(ctx context.Context) ([]*github.Repository, error) 
 	return all, nil
 }
 
+// TriggerRepoScan performs an immediate targeted scan of a single repository and
+// invokes the onScanComplete callback with the full updated repo list.
+// It is intended for use by the webhook handler to react to GitHub push/create/delete events.
+// The call blocks until the scan and callback complete.
+func (s *Scanner) TriggerRepoScan(ctx context.Context, owner, repoName string) {
+	repoCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
+	defer cancel()
+
+	// Fetch current repo metadata (description, URL, visibility) from GitHub.
+	var ghRepo *github.Repository
+	if err := retryGitHub(repoCtx, func() error {
+		var e error
+		ghRepo, _, e = s.client.Repositories.Get(repoCtx, owner, repoName)
+		return e
+	}); err != nil {
+		log.Printf("[scanner] TriggerRepoScan: failed to fetch metadata for %s/%s: %v\n", owner, repoName, err)
+		return
+	}
+
+	files := s.scanRepo(repoCtx, owner, repoName)
+	fullName := fmt.Sprintf("%s/%s", owner, repoName)
+
+	s.mu.Lock()
+	if len(files) > 0 {
+		s.repos[fullName] = &RepoInfo{
+			Name:        fullName,
+			FullName:    ghRepo.GetFullName(),
+			Description: ghRepo.GetDescription(),
+			HTMLURL:     ghRepo.GetHTMLURL(),
+			Files:       files,
+		}
+	} else {
+		// Repo no longer has any indexed docs — remove from cache.
+		delete(s.repos, fullName)
+	}
+	onComplete := s.onScanComplete
+	s.mu.Unlock()
+
+	if onComplete != nil {
+		onComplete(s.ListRepos())
+	}
+}
+
 // scanRepo checks a single repo for target documentation files.
 func (s *Scanner) scanRepo(ctx context.Context, repoOwner, repoName string) []FileEntry {
 	var entries []FileEntry

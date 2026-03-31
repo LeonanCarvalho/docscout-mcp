@@ -26,6 +26,7 @@ import (
 	"github.com/leonancarvalho/docscout-mcp/memory"
 	"github.com/leonancarvalho/docscout-mcp/scanner"
 	"github.com/leonancarvalho/docscout-mcp/tools"
+	"github.com/leonancarvalho/docscout-mcp/webhook"
 )
 
 const (
@@ -225,8 +226,20 @@ func main() {
 			}
 		})
 
+		// GitHub Webhooks — optional, enabled only when GITHUB_WEBHOOK_SECRET is set.
+		// The endpoint uses its own HMAC-SHA256 validation and bypasses bearer token auth.
+		if webhookSecret := os.Getenv("GITHUB_WEBHOOK_SECRET"); webhookSecret != "" {
+			mux.Handle("/webhook", webhook.Handler(ctx, []byte(webhookSecret), sc))
+			slog.Info("GitHub webhook endpoint enabled", "path", "/webhook")
+		}
+
 		// Bearer Token Auth Middleware — uses constant-time comparison to prevent timing attacks.
+		// The /webhook path is explicitly excluded: it carries its own HMAC-SHA256 signature.
 		authHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if r.URL.Path == "/webhook" {
+				mux.ServeHTTP(w, r)
+				return
+			}
 			expectedToken := os.Getenv("MCP_HTTP_BEARER_TOKEN")
 			if expectedToken != "" {
 				provided := r.Header.Get("Authorization")

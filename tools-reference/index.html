@@ -1,0 +1,1787 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Give your AI assistant a reliable map of your entire GitHub organization.">
+      
+      
+        <meta name="author" content="Leonan Carvalho">
+      
+      
+        <link rel="canonical" href="https://leonancarvalho.github.io/docscout-mcp/tools-reference/">
+      
+      
+        <link rel="prev" href="../antigravity/">
+      
+      
+        <link rel="next" href="../contributing/">
+      
+      
+      <link rel="icon" href="../images/doc-scout-mcp-server.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>MCP Tools Reference - DocScout-MCP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mcp-tools-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="DocScout-MCP" class="md-header__button md-logo" aria-label="DocScout-MCP" data-md-component="logo">
+      
+  <img src="../images/doc-scout-mcp-server.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DocScout-MCP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MCP Tools Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/leonancarvalho/docscout-mcp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    leonancarvalho/docscout-mcp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../how-it-works/" class="md-tabs__link">
+        
+  
+    
+  
+  How It Works
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../README.md" class="md-tabs__link">
+          
+  
+  Client Integrations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  MCP Tools Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contributing/" class="md-tabs__link">
+          
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DocScout-MCP" class="md-nav__button md-logo" aria-label="DocScout-MCP" data-md-component="logo">
+      
+  <img src="../images/doc-scout-mcp-server.png" alt="logo">
+
+    </a>
+    DocScout-MCP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/leonancarvalho/docscout-mcp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    leonancarvalho/docscout-mcp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-it-works/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How It Works
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Client Integrations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Client Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../claude/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Claude Desktop & CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VS Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../copilot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chatgpt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChatGPT Desktop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gemini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Gemini CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../antigravity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Antigravity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MCP Tools Reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    MCP Tools Reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scanner-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scanner Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scanner Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list_repos" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_repos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_docs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_file_content" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_file_content
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_scan_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_scan_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_content" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_content
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-graph-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knowledge Graph Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knowledge Graph Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_entities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_relations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_observations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_nodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open_nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      open_nodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traverse_graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      traverse_graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_entities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_observations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_relations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observability Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observability Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_usage_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_usage_stats
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEVELOPMENT_GUIDELINES/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Guidelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scanner-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scanner Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scanner Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list_repos" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_repos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_docs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_file_content" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_file_content
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_scan_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_scan_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_content" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_content
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-graph-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knowledge Graph Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knowledge Graph Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_entities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_relations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_observations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_nodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open_nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      open_nodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traverse_graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      traverse_graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_entities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_observations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_relations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observability Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observability Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_usage_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_usage_stats
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="mcp-tools-reference">MCP Tools Reference<a class="headerlink" href="#mcp-tools-reference" title="Permanent link">&para;</a></h1>
+<p>DocScout-MCP exposes <strong>16 MCP tools</strong> across three categories. All tools are instrumented with call-count metrics and wrapped with panic recovery.</p>
+<div class="admonition note">
+<p class="admonition-title">Tool availability</p>
+<p><code>search_content</code> is only registered when <code>SCAN_CONTENT=true</code> on a persistent <code>DATABASE_URL</code>.
+All other tools are always available.</p>
+</div>
+<hr />
+<h2 id="scanner-tools">Scanner Tools<a class="headerlink" href="#scanner-tools" title="Permanent link">&para;</a></h2>
+<h3 id="list_repos"><code>list_repos</code><a class="headerlink" href="#list_repos" title="Permanent link">&para;</a></h3>
+<p>Lists all repositories in the organization that contain indexed files.</p>
+<p><strong>Parameters:</strong> none</p>
+<p><strong>Returns:</strong> Array of <code>{ name, full_name, description, html_url, files[] }</code>.</p>
+<hr />
+<h3 id="search_docs"><code>search_docs</code><a class="headerlink" href="#search_docs" title="Permanent link">&para;</a></h3>
+<p>Searches for documentation files by matching a query term against file paths and repository names.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td>string</td>
+<td>✅</td>
+<td>Search term (must not be empty or whitespace-only)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> Array of <code>{ repo_name, path, type }</code>.</p>
+<hr />
+<h3 id="get_file_content"><code>get_file_content</code><a class="headerlink" href="#get_file_content" title="Permanent link">&para;</a></h3>
+<p>Retrieves the raw content of a specific documentation file from a GitHub repository.</p>
+<div class="admonition warning">
+<p class="admonition-title">Security</p>
+<p>Only files that have been indexed by the scanner can be fetched. Arbitrary file paths are rejected, preventing path traversal.</p>
+</div>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>repo</code></td>
+<td>string</td>
+<td>✅</td>
+<td>Repository name (e.g. <code>my-org/my-service</code>)</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>string</td>
+<td>✅</td>
+<td>File path as returned by <code>list_repos</code> or <code>search_docs</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> Raw file content as a string.</p>
+<hr />
+<h3 id="get_scan_status"><code>get_scan_status</code><a class="headerlink" href="#get_scan_status" title="Permanent link">&para;</a></h3>
+<p>Returns the current state of the documentation scanner and knowledge graph index. Call this before searching to confirm the index is populated, especially right after startup.</p>
+<p><strong>Parameters:</strong> none</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scanning</code></td>
+<td>bool</td>
+<td>Whether a scan is currently in progress</td>
+</tr>
+<tr>
+<td><code>last_scan_at</code></td>
+<td>string</td>
+<td>RFC3339 timestamp of the last completed scan</td>
+</tr>
+<tr>
+<td><code>repo_count</code></td>
+<td>int</td>
+<td>Number of repos indexed</td>
+</tr>
+<tr>
+<td><code>content_indexed</code></td>
+<td>int</td>
+<td>Files in the content cache (<code>SCAN_CONTENT=true</code> only)</td>
+</tr>
+<tr>
+<td><code>graph_entities</code></td>
+<td>int</td>
+<td>Total entities in the knowledge graph</td>
+</tr>
+<tr>
+<td><code>content_enabled</code></td>
+<td>bool</td>
+<td>Whether content caching is active</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="search_content"><code>search_content</code><a class="headerlink" href="#search_content" title="Permanent link">&para;</a></h3>
+<p>Full-text search across the content of all cached documentation files. Only available when <code>SCAN_CONTENT=true</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td>string</td>
+<td>✅</td>
+<td>Term to search inside file content (must not be whitespace-only)</td>
+</tr>
+<tr>
+<td><code>repo</code></td>
+<td>string</td>
+<td></td>
+<td>Filter results to a single repository</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> Up to 20 results, each with <code>{ repo_name, path, snippet }</code>. The snippet is ~300 characters of context around the first match.</p>
+<hr />
+<h2 id="knowledge-graph-tools">Knowledge Graph Tools<a class="headerlink" href="#knowledge-graph-tools" title="Permanent link">&para;</a></h2>
+<p>The knowledge graph stores entities (nodes), relations (directed edges), and observations (facts attached to entities).</p>
+<h3 id="create_entities"><code>create_entities</code><a class="headerlink" href="#create_entities" title="Permanent link">&para;</a></h3>
+<p>Creates new entities in the knowledge graph. Duplicate names are silently skipped.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>entities</code></td>
+<td>array</td>
+<td>✅</td>
+<td>Array of <code>{ name, entityType, observations[] }</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observation rules:</strong> Observations are sanitized before storage — empty strings, strings shorter than 2 characters, strings longer than 500 characters, and duplicates within the batch are rejected. The response includes a <code>skipped</code> field listing rejections with reasons.</p>
+<hr />
+<h3 id="create_relations"><code>create_relations</code><a class="headerlink" href="#create_relations" title="Permanent link">&para;</a></h3>
+<p>Creates directed edges between entities. Duplicate <code>(from, to, relationType)</code> triples are silently skipped.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>relations</code></td>
+<td>array</td>
+<td>✅</td>
+<td>Array of <code>{ from, to, relationType }</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="add_observations"><code>add_observations</code><a class="headerlink" href="#add_observations" title="Permanent link">&para;</a></h3>
+<p>Appends facts to existing entities. Observations that already exist on the entity are skipped (idempotent).</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observations</code></td>
+<td>array</td>
+<td>✅</td>
+<td>Array of <code>{ entityName, contents[] }</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="read_graph"><code>read_graph</code><a class="headerlink" href="#read_graph" title="Permanent link">&para;</a></h3>
+<p>Returns the entire knowledge graph. Use <code>search_nodes</code>, <code>open_nodes</code>, or <code>traverse_graph</code> when you only need a subset — they are much more token-efficient for large graphs.</p>
+<p><strong>Parameters:</strong> none</p>
+<p><strong>Returns:</strong> <code>{ entities[], relations[] }</code>.</p>
+<hr />
+<h3 id="search_nodes"><code>search_nodes</code><a class="headerlink" href="#search_nodes" title="Permanent link">&para;</a></h3>
+<p>Searches entities by name, type, or observation content using a substring match.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td>string</td>
+<td>✅</td>
+<td>Substring to match against entity name, type, or observation text</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>{ entities[], relations[] }</code> — the subgraph of matching entities and the relations between them.</p>
+<hr />
+<h3 id="open_nodes"><code>open_nodes</code><a class="headerlink" href="#open_nodes" title="Permanent link">&para;</a></h3>
+<p>Retrieves specific entities by exact name, along with their relations.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>names</code></td>
+<td>array</td>
+<td>✅</td>
+<td>List of entity names to retrieve</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>{ entities[], relations[] }</code>.</p>
+<hr />
+<h3 id="traverse_graph"><code>traverse_graph</code><a class="headerlink" href="#traverse_graph" title="Permanent link">&para;</a></h3>
+<p>Performs a BFS traversal from a starting entity, following directed edges up to a configurable depth. Use this instead of <code>read_graph</code> for focused impact and dependency queries — it only returns the relevant subgraph.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>entity</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>Starting entity name</td>
+</tr>
+<tr>
+<td><code>relation_type</code></td>
+<td>string</td>
+<td></td>
+<td>all types</td>
+<td>Filter edges by type (e.g. <code>depends_on</code>, <code>owned_by</code>, <code>consumes_api</code>)</td>
+</tr>
+<tr>
+<td><code>direction</code></td>
+<td>string</td>
+<td></td>
+<td><code>outgoing</code></td>
+<td><code>outgoing</code> · <code>incoming</code> · <code>both</code></td>
+</tr>
+<tr>
+<td><code>depth</code></td>
+<td>int</td>
+<td></td>
+<td><code>1</code></td>
+<td>Number of hops to follow (1–10, clamped)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start_entity</code></td>
+<td>string</td>
+<td>The starting entity name</td>
+</tr>
+<tr>
+<td><code>nodes</code></td>
+<td>array</td>
+<td>Reached nodes, each with <code>name</code>, <code>entityType</code>, <code>observations</code>, <code>distance</code>, <code>path</code></td>
+</tr>
+<tr>
+<td><code>total_found</code></td>
+<td>int</td>
+<td>Number of reachable nodes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example queries:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># Impact: who depends on payment-api?
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>traverse_graph(entity=&quot;payment-api&quot;, relation_type=&quot;depends_on&quot;, direction=&quot;incoming&quot;, depth=1)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a># Transitive deps: full dependency tree of auth-service
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>traverse_graph(entity=&quot;auth-service&quot;, relation_type=&quot;depends_on&quot;, direction=&quot;outgoing&quot;, depth=5)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a># Ownership: who owns checkout-service and its direct dependencies?
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>traverse_graph(entity=&quot;checkout-service&quot;, direction=&quot;both&quot;, depth=2)
+</span></code></pre></div>
+<hr />
+<h3 id="delete_entities"><code>delete_entities</code><a class="headerlink" href="#delete_entities" title="Permanent link">&para;</a></h3>
+<p>Removes entities and all their associated relations and observations.</p>
+<div class="admonition warning">
+<p class="admonition-title">Mass-delete guard</p>
+<p>Deleting more than 10 entities in a single call is rejected unless <code>confirm: true</code> is explicitly set.</p>
+</div>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>entityNames</code></td>
+<td>array</td>
+<td>✅</td>
+<td>Names of entities to delete</td>
+</tr>
+<tr>
+<td><code>confirm</code></td>
+<td>bool</td>
+<td></td>
+<td>Required when deleting more than 10 entities</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="delete_observations"><code>delete_observations</code><a class="headerlink" href="#delete_observations" title="Permanent link">&para;</a></h3>
+<p>Removes specific observations from entities without deleting the entities themselves.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observations</code></td>
+<td>array</td>
+<td>✅</td>
+<td>Array of <code>{ entityName, observations[] }</code> — the observation strings to remove</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="delete_relations"><code>delete_relations</code><a class="headerlink" href="#delete_relations" title="Permanent link">&para;</a></h3>
+<p>Removes specific directed edges from the graph.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>relations</code></td>
+<td>array</td>
+<td>✅</td>
+<td>Array of <code>{ from, to, relationType }</code> triples to remove</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="observability-tools">Observability Tools<a class="headerlink" href="#observability-tools" title="Permanent link">&para;</a></h2>
+<h3 id="get_usage_stats"><code>get_usage_stats</code><a class="headerlink" href="#get_usage_stats" title="Permanent link">&para;</a></h3>
+<p>Returns per-tool call counts and the top 20 most-fetched documents since server start. Useful for identifying which documentation areas are most frequently accessed by AI agents, helping teams spot knowledge gaps.</p>
+<p><strong>Parameters:</strong> none</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tool_calls</code></td>
+<td>object</td>
+<td>Map of <code>tool_name → call_count</code></td>
+</tr>
+<tr>
+<td><code>top_documents</code></td>
+<td>array</td>
+<td>Top 20 docs by access count: <code>{ repo, path, count }</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>/metrics</code> HTTP endpoint (when <code>HTTP_ADDR</code> is set) emits the same data as Prometheus counters:</p>
+<ul>
+<li><code>docscout_tool_calls_total{tool}</code> — total calls per tool</li>
+<li><code>docscout_document_accesses_total{repo,path}</code> — total fetches per document</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../antigravity/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Antigravity">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Antigravity
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../contributing/" class="md-footer__link md-footer__link--next" aria-label="Next: Contributing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Contributing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Leonan Carvalho — AGPL-3.0
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/leonancarvalho/docscout-mcp" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

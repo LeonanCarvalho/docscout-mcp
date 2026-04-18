@@ -1,12 +1,15 @@
+# Copyright 2026 Leonan Carvalho
+# SPDX-License-Identifier: AGPL-3.0-only
+
 name: Benchmark
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'benchmark/**'
-      - 'scanner/parser/**'
-      - 'main.go'
+    tags:
+      - 'v*'
+  release:
+    types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,16 +19,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Check out the branch the release targets (usually main) so the
+          # auto-commit action can push RESULTS.md back instead of a detached HEAD.
+          ref: ${{ github.event.release.target_commitish || github.ref || 'main' }}
+          fetch-depth: 0
 
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
 
-      - name: Run theoretical benchmark
-        run: make benchmark
+      - name: Run benchmark
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: make benchmark-live VERSION=${{ github.ref_name }}
 
       - name: Commit updated RESULTS.md
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "bench: update RESULTS.md [skip ci]"
+          commit_message: "bench: update RESULTS.md for ${{ github.ref_name }} [skip ci]"
           file_pattern: benchmark/RESULTS.md

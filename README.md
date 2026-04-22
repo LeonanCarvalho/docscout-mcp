@@ -1,4 +1,6 @@
 <div align="center">
+Moved to: https://github.com/doc-scout/mcp-server
+
 
 # DocScout-MCP
 

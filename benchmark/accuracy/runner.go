@@ -9,7 +9,7 @@ import (
 	"io/fs"
 	"slices"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 // TestCase is one entry in ground_truth.json.

@@ -9,8 +9,8 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/leonancarvalho/docscout-mcp/tests/testutils"
-	"github.com/leonancarvalho/docscout-mcp/tools"
+	"github.com/doc-scout/mcp-server/tests/testutils"
+	"github.com/doc-scout/mcp-server/tools"
 )
 
 // callIntegrationMap is a helper that calls get_integration_map and returns the parsed result.

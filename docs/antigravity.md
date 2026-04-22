@@ -6,7 +6,7 @@ Antigravity supports MCP servers through its configuration file.
 
 Edit your Antigravity settings file (typically located in your user directory):
 
-**Windows:** `%USERPROFILE%\.gemini\settings.json`  
+**Windows:** `%USERPROFILE%\.gemini\settings.json`
 **macOS/Linux:** `~/.gemini/settings.json`
 
 Add an MCP server entry:
@@ -33,11 +33,17 @@ Add an MCP server entry:
   "mcpServers": {
     "docscout": {
       "command": "docker",
-      "args": ["run", "-i", "--rm",
-        "-e", "GITHUB_TOKEN=github_pat_...",
-        "-e", "GITHUB_ORG=my-org",
-        "-e", "SCAN_INTERVAL=1h",
-        "ghcr.io/leonancarvalho/docscout-mcp:latest"
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_TOKEN=github_pat_...",
+        "-e",
+        "GITHUB_ORG=my-org",
+        "-e",
+        "SCAN_INTERVAL=1h",
+        "ghcr.io/doc-scout/mcp-server:latest"
       ]
     }
   }

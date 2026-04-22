@@ -9,10 +9,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/indexer"
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/scanner"
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/indexer"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/scanner"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 // testRegistry builds an isolated registry with all built-in parsers for use in tests.

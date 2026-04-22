@@ -8,7 +8,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 func TestLiveRunnerRejectsEmptyAPIKey(t *testing.T) {

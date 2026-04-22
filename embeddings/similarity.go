@@ -12,7 +12,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 // CosineSimilarity returns the cosine similarity in [-1, 1] between two equal-length

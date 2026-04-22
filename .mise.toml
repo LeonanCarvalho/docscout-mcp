@@ -38,7 +38,7 @@ run_windows = "cmd /c gci write -s standard -s default -s localmodule --skip-gen
 
 [tasks.license]
 description = "Adiciona cabeçalhos de licença a todos os arquivos .go"
-run = "addlicense -s -c 'Leonan Carvalho' -l AGPL-3.0-only -ignore '**/*.md' -ignore '**/*.json' -ignore '**/*.yaml'  -ignore '**/*.txt' -ignore 'vendor/**' ."
+run = "addlicense -s -c 'Doc Scout' -l AGPL-3.0-only -ignore '**/*.md' -ignore '**/*.json' -ignore '**/*.yaml'  -ignore '**/*.txt' -ignore 'vendor/**' ."
 
 [tasks.clean]
 description = "Remove binários gerados"

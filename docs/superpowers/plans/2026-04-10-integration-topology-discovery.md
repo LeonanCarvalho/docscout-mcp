@@ -16,29 +16,29 @@
 
 ## File Map
 
-| File | Action | Responsibility |
-|---|---|---|
-| `scanner/parser/asyncapi.go` | **Create** | Parse AsyncAPI channels → `publishes_event`/`subscribes_event` relations |
-| `scanner/parser/asyncapi_test.go` | **Create** | Unit tests |
-| `scanner/parser/springkafka.go` | **Create** | Parse `application.yml`/`.properties` Kafka config → topic relations |
-| `scanner/parser/springkafka_test.go` | **Create** | Unit tests |
-| `scanner/parser/openapi.go` | **Create** | Parse OpenAPI/Swagger `info` → `exposes_api` relation |
-| `scanner/parser/openapi_test.go` | **Create** | Unit tests |
-| `scanner/parser/proto.go` | **Create** | Line-scan `.proto` files → `provides_grpc`/`depends_on_grpc` relations |
-| `scanner/parser/proto_test.go` | **Create** | Unit tests |
-| `scanner/parser/k8sintegration.go` | **Create** | Scan K8s Deployment env vars → `calls_service` relations |
-| `scanner/parser/k8sintegration_test.go` | **Create** | Unit tests |
-| `scanner/scanner.go` | **Modify** | Add `.proto` to `infraExtensions` |
-| `memory/integration.go` | **Create** | `GetIntegrationMap` SQL queries + `IntegrationMap` types |
-| `memory/integration_test.go` | **Create** | Unit tests for `GetIntegrationMap` |
-| `memory/memory.go` | **Modify** | Expose `GetIntegrationMap` on `MemoryService` |
-| `tools/ports.go` | **Modify** | Add `GetIntegrationMap` to `GraphStore` interface |
-| `tools/audit.go` | **Modify** | Add `GetIntegrationMap` read-only pass-through |
-| `tools/get_integration_map.go` | **Create** | MCP tool handler |
-| `tools/tools.go` | **Modify** | Register `get_integration_map` tool |
-| `main.go` | **Modify** | Register 5 new parsers in `parser.Default` |
-| `tests/integration_map/integration_map_test.go` | **Create** | E2E tests |
-| `AGENTS.md` | **Modify** | Update §7 with new relation types and tool usage |
+| File                                            | Action     | Responsibility                                                           |
+| ----------------------------------------------- | ---------- | ------------------------------------------------------------------------ |
+| `scanner/parser/asyncapi.go`                    | **Create** | Parse AsyncAPI channels → `publishes_event`/`subscribes_event` relations |
+| `scanner/parser/asyncapi_test.go`               | **Create** | Unit tests                                                               |
+| `scanner/parser/springkafka.go`                 | **Create** | Parse `application.yml`/`.properties` Kafka config → topic relations     |
+| `scanner/parser/springkafka_test.go`            | **Create** | Unit tests                                                               |
+| `scanner/parser/openapi.go`                     | **Create** | Parse OpenAPI/Swagger `info` → `exposes_api` relation                    |
+| `scanner/parser/openapi_test.go`                | **Create** | Unit tests                                                               |
+| `scanner/parser/proto.go`                       | **Create** | Line-scan `.proto` files → `provides_grpc`/`depends_on_grpc` relations   |
+| `scanner/parser/proto_test.go`                  | **Create** | Unit tests                                                               |
+| `scanner/parser/k8sintegration.go`              | **Create** | Scan K8s Deployment env vars → `calls_service` relations                 |
+| `scanner/parser/k8sintegration_test.go`         | **Create** | Unit tests                                                               |
+| `scanner/scanner.go`                            | **Modify** | Add `.proto` to `infraExtensions`                                        |
+| `memory/integration.go`                         | **Create** | `GetIntegrationMap` SQL queries + `IntegrationMap` types                 |
+| `memory/integration_test.go`                    | **Create** | Unit tests for `GetIntegrationMap`                                       |
+| `memory/memory.go`                              | **Modify** | Expose `GetIntegrationMap` on `MemoryService`                            |
+| `tools/ports.go`                                | **Modify** | Add `GetIntegrationMap` to `GraphStore` interface                        |
+| `tools/audit.go`                                | **Modify** | Add `GetIntegrationMap` read-only pass-through                           |
+| `tools/get_integration_map.go`                  | **Create** | MCP tool handler                                                         |
+| `tools/tools.go`                                | **Modify** | Register `get_integration_map` tool                                      |
+| `main.go`                                       | **Modify** | Register 5 new parsers in `parser.Default`                               |
+| `tests/integration_map/integration_map_test.go` | **Create** | E2E tests                                                                |
+| `AGENTS.md`                                     | **Modify** | Update §7 with new relation types and tool usage                         |
 
 ---
 
@@ -59,6 +59,7 @@ Expected: `Switched to a new branch 'feat/integration-topology-discovery'`
 ## Task 2: AsyncAPIParser
 
 **Files:**
+
 - Create: `scanner/parser/asyncapi.go`
 - Create: `scanner/parser/asyncapi_test.go`
 
@@ -73,7 +74,7 @@ package parser_test
 import (
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 func TestAsyncAPIParser_FileTypeAndFilenames(t *testing.T) {
@@ -311,6 +312,7 @@ git commit -m "feat(parser): add AsyncAPIParser for publishes_event/subscribes_e
 ## Task 3: SpringKafkaParser
 
 **Files:**
+
 - Create: `scanner/parser/springkafka.go`
 - Create: `scanner/parser/springkafka_test.go`
 
@@ -325,7 +327,7 @@ package parser_test
 import (
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 func TestSpringKafkaParser_FileTypeAndFilenames(t *testing.T) {
@@ -610,6 +612,7 @@ for _, r := range parsed.Relations {
 ```
 
 Also update the `ParsedFile` doc comment in `extension.go`:
+
 ```go
 // Relations with From == "" have their From field filled with the derived repo service name.
 // Relations with To == "" have their To field filled with the derived repo service name.
@@ -647,6 +650,7 @@ git commit -m "feat(parser): add SpringKafkaParser; indexer fills empty From in 
 ## Task 4: OpenAPIParser
 
 **Files:**
+
 - Create: `scanner/parser/openapi.go`
 - Create: `scanner/parser/openapi_test.go`
 
@@ -661,7 +665,7 @@ package parser_test
 import (
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 func TestOpenAPIParser_FileTypeAndFilenames(t *testing.T) {
@@ -860,6 +864,7 @@ git commit -m "feat(parser): add OpenAPIParser for exposes_api relations"
 ## Task 5: ProtoParser
 
 **Files:**
+
 - Create: `scanner/parser/proto.go`
 - Create: `scanner/parser/proto_test.go`
 - Modify: `scanner/scanner.go` (add `.proto` to `infraExtensions`)
@@ -875,7 +880,7 @@ package parser_test
 import (
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 func TestProtoParser_FileTypeAndFilenames(t *testing.T) {
@@ -1118,6 +1123,7 @@ git commit -m "feat(parser): add ProtoParser for provides_grpc/depends_on_grpc r
 ## Task 6: K8sServiceParser
 
 **Files:**
+
 - Create: `scanner/parser/k8sintegration.go`
 - Create: `scanner/parser/k8sintegration_test.go`
 
@@ -1134,7 +1140,7 @@ package parser_test
 import (
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 func TestK8sServiceParser_FileTypeAndFilenames(t *testing.T) {
@@ -1406,6 +1412,7 @@ git commit -m "feat(main): register 5 integration topology parsers"
 ## Task 8: Memory layer — `GetIntegrationMap`
 
 **Files:**
+
 - Create: `memory/integration.go`
 - Create: `memory/integration_test.go`
 - Modify: `memory/memory.go`
@@ -1422,7 +1429,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 func setupIntegrationTestDB(t *testing.T) *memory.MemoryService {
@@ -1738,6 +1745,7 @@ git commit -m "feat(memory): add GetIntegrationMap for integration topology quer
 ## Task 9: Wire `GetIntegrationMap` into tools layer
 
 **Files:**
+
 - Modify: `tools/ports.go`
 - Modify: `tools/audit.go`
 - Create: `tools/get_integration_map.go`
@@ -1918,7 +1926,7 @@ import (
 	"fmt"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 // IntegrationMapArgs are the inputs for get_integration_map.
@@ -2043,6 +2051,7 @@ git commit -m "feat(tools): add get_integration_map MCP tool for integration top
 ## Task 10: E2E integration test
 
 **Files:**
+
 - Create: `tests/integration_map/integration_map_test.go`
 
 - [ ] **Step 1: Write the E2E test**
@@ -2058,9 +2067,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/tests/testutils"
-	"github.com/leonancarvalho/docscout-mcp/tools"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/tests/testutils"
+	"github.com/doc-scout/mcp-server/tools"
 )
 
 func TestGetIntegrationMapTool_E2E(t *testing.T) {
@@ -2201,14 +2210,14 @@ Find the `## New relation types` or equivalent section in §7 and append:
 ```markdown
 ## Integration Relation Types
 
-| Relation | From | To | Source |
-|---|---|---|---|
-| `publishes_event` | service | event-topic | AsyncAPI |
-| `subscribes_event` | service | event-topic | AsyncAPI |
-| `exposes_api` | service | api | OpenAPI/Swagger |
-| `provides_grpc` | service | grpc-service | .proto |
-| `depends_on_grpc` | service | grpc-service | .proto imports |
-| `calls_service` | service | service | K8s env vars |
+| Relation           | From    | To           | Source          |
+| ------------------ | ------- | ------------ | --------------- |
+| `publishes_event`  | service | event-topic  | AsyncAPI        |
+| `subscribes_event` | service | event-topic  | AsyncAPI        |
+| `exposes_api`      | service | api          | OpenAPI/Swagger |
+| `provides_grpc`    | service | grpc-service | .proto          |
+| `depends_on_grpc`  | service | grpc-service | .proto imports  |
+| `calls_service`    | service | service      | K8s env vars    |
 
 New entity types: `event-topic`, `grpc-service` (in addition to existing `api`, `service`, `team`, `person`).
 

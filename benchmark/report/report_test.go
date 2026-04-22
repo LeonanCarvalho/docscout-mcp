@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/report"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/report"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 func TestReportContainsRequiredSections(t *testing.T) {

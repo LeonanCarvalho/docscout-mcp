@@ -11,9 +11,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/scanner"
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/scanner"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 // FileGetter fetches the raw content of an indexed documentation file.

@@ -1,3 +1,6 @@
+# Copyright 2026 Doc Scout
+# SPDX-License-Identifier: AGPL-3.0-only
+
 # Project-local RTK filters — commit this file with your repo.
 # Filters here override user-global and built-in filters.
 # Docs: https://github.com/rtk-ai/rtk#custom-filters

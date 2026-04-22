@@ -1,68 +1,68 @@
 # Copyright 2026 Leonan Carvalho
 # SPDX-License-Identifier: AGPL-3.0-only
 
-name-template: 'v$NEXT_PATCH_VERSION'
-tag-template: 'v$NEXT_PATCH_VERSION'
+name-template: "v$NEXT_PATCH_VERSION"
+tag-template: "v$NEXT_PATCH_VERSION"
 
 categories:
-  - title: 'Breaking Changes'
+  - title: "Breaking Changes"
     labels:
-      - 'breaking'
-  - title: 'Features'
+      - "breaking"
+  - title: "Features"
     labels:
-      - 'feature'
-      - 'feat'
-  - title: 'Bug Fixes'
+      - "feature"
+      - "feat"
+  - title: "Bug Fixes"
     labels:
-      - 'bug'
-      - 'fix'
-  - title: 'Documentation'
+      - "bug"
+      - "fix"
+  - title: "Documentation"
     labels:
-      - 'documentation'
-      - 'docs'
-  - title: 'Maintenance'
+      - "documentation"
+      - "docs"
+  - title: "Maintenance"
     labels:
-      - 'chore'
-      - 'deps'
-      - 'refactor'
-      - 'perf'
+      - "chore"
+      - "deps"
+      - "refactor"
+      - "perf"
 
 version-resolver:
   major:
     labels:
-      - 'major'
-      - 'breaking'
+      - "major"
+      - "breaking"
   minor:
     labels:
-      - 'minor'
-      - 'feature'
-      - 'feat'
+      - "minor"
+      - "feature"
+      - "feat"
   patch:
     labels:
-      - 'patch'
-      - 'bug'
-      - 'fix'
-      - 'chore'
-      - 'documentation'
-      - 'docs'
-      - 'refactor'
-      - 'perf'
+      - "patch"
+      - "bug"
+      - "fix"
+      - "chore"
+      - "documentation"
+      - "docs"
+      - "refactor"
+      - "perf"
   default: patch
 
 autolabeler:
-  - label: 'breaking'
+  - label: "breaking"
     title:
-      - '/BREAKING CHANGE/i'
-  - label: 'feature'
+      - "/BREAKING CHANGE/i"
+  - label: "feature"
     title:
       - '/^feat(\(.+\))?:/i'
-  - label: 'bug'
+  - label: "bug"
     title:
       - '/^fix(\(.+\))?:/i'
-  - label: 'documentation'
+  - label: "documentation"
     title:
       - '/^docs(\(.+\))?:/i'
-  - label: 'chore'
+  - label: "chore"
     title:
       - '/^(chore|refactor|perf|ci|build|test|style)(\(.+\))?:/i'
 
@@ -71,4 +71,4 @@ template: |
 
   $CHANGES
 
-  **Full Changelog**: https://github.com/leonancarvalho/docscout-mcp/compare/$PREVIOUS_TAG...$RESOLVED_VERSION
+  **Full Changelog**: https://github.com/doc-scout/mcp-server/compare/$PREVIOUS_TAG...$RESOLVED_VERSION

@@ -9,8 +9,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 var storeCounter atomic.Int64

@@ -15,53 +15,56 @@
 ## File Map
 
 ### New files
-| Path | Responsibility |
-|------|---------------|
-| `benchmark/testdata/embed.go` | `//go:embed` declarations, exports `FS embed.FS` |
-| `benchmark/testdata/synthetic-org/billing-service/go.mod` | Synthetic Go module fixture |
-| `benchmark/testdata/synthetic-org/billing-service/CODEOWNERS` | Synthetic CODEOWNERS fixture |
-| `benchmark/testdata/synthetic-org/billing-service/openapi.yaml` | Synthetic OpenAPI fixture |
-| `benchmark/testdata/synthetic-org/checkout-service/go.mod` | Synthetic Go module with cross-dep |
-| `benchmark/testdata/synthetic-org/checkout-service/catalog-info.yaml` | Synthetic Backstage fixture |
-| `benchmark/testdata/synthetic-org/payment-worker/pom.xml` | Synthetic Maven fixture |
-| `benchmark/testdata/synthetic-org/payment-worker/asyncapi.yaml` | Synthetic AsyncAPI fixture |
-| `benchmark/testdata/synthetic-org/frontend-app/package.json` | Synthetic npm fixture |
-| `benchmark/testdata/synthetic-org/frontend-app/CODEOWNERS` | Synthetic CODEOWNERS (person owner) |
-| `benchmark/testdata/synthetic-org/auth-service/go.mod` | Synthetic Go module fixture |
-| `benchmark/testdata/synthetic-org/auth-service/auth.proto` | Synthetic Protobuf fixture |
-| `benchmark/testdata/ground_truth.json` | Expected parser output per fixture file |
-| `benchmark/testdata/questions.json` | Canonical 12-question corpus |
-| `benchmark/accuracy/runner.go` | Loads ground truth, calls parsers, computes per-parser F1 |
-| `benchmark/accuracy/runner_test.go` | Table-driven tests for accuracy runner |
-| `benchmark/token/model.go` | Pre-computed constants + `EstimateNaiveTokens()` |
-| `benchmark/token/model_test.go` | Tests for theoretical estimates |
-| `benchmark/token/live.go` | Builds in-process graph, calls Claude API, measures input_tokens |
-| `benchmark/token/live_test.go` | Tests live runner with mock HTTP |
-| `benchmark/report/report.go` | Takes `Results`, produces markdown |
-| `benchmark/report/report_test.go` | Golden-file test for report output |
-| `benchmark/cmd/main.go` | CLI entrypoint: flags, orchestration, writes report |
-| `.github/workflows/benchmark.yml` | Auto-runs theoretical benchmark on main push, commits RESULTS.md |
-| `benchmark/RESULTS.md` | Generated; first committed in Task 7 |
-| `docs/benchmarks.md` | MkDocs page mirroring RESULTS.md |
-| `docs/examples/ownership-queries.md` | Example: ownership questions |
-| `docs/examples/impact-analysis.md` | Example: impact analysis |
-| `docs/examples/dependency-audit.md` | Example: dependency audit |
+
+| Path                                                                  | Responsibility                                                   |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `benchmark/testdata/embed.go`                                         | `//go:embed` declarations, exports `FS embed.FS`                 |
+| `benchmark/testdata/synthetic-org/billing-service/go.mod`             | Synthetic Go module fixture                                      |
+| `benchmark/testdata/synthetic-org/billing-service/CODEOWNERS`         | Synthetic CODEOWNERS fixture                                     |
+| `benchmark/testdata/synthetic-org/billing-service/openapi.yaml`       | Synthetic OpenAPI fixture                                        |
+| `benchmark/testdata/synthetic-org/checkout-service/go.mod`            | Synthetic Go module with cross-dep                               |
+| `benchmark/testdata/synthetic-org/checkout-service/catalog-info.yaml` | Synthetic Backstage fixture                                      |
+| `benchmark/testdata/synthetic-org/payment-worker/pom.xml`             | Synthetic Maven fixture                                          |
+| `benchmark/testdata/synthetic-org/payment-worker/asyncapi.yaml`       | Synthetic AsyncAPI fixture                                       |
+| `benchmark/testdata/synthetic-org/frontend-app/package.json`          | Synthetic npm fixture                                            |
+| `benchmark/testdata/synthetic-org/frontend-app/CODEOWNERS`            | Synthetic CODEOWNERS (person owner)                              |
+| `benchmark/testdata/synthetic-org/auth-service/go.mod`                | Synthetic Go module fixture                                      |
+| `benchmark/testdata/synthetic-org/auth-service/auth.proto`            | Synthetic Protobuf fixture                                       |
+| `benchmark/testdata/ground_truth.json`                                | Expected parser output per fixture file                          |
+| `benchmark/testdata/questions.json`                                   | Canonical 12-question corpus                                     |
+| `benchmark/accuracy/runner.go`                                        | Loads ground truth, calls parsers, computes per-parser F1        |
+| `benchmark/accuracy/runner_test.go`                                   | Table-driven tests for accuracy runner                           |
+| `benchmark/token/model.go`                                            | Pre-computed constants + `EstimateNaiveTokens()`                 |
+| `benchmark/token/model_test.go`                                       | Tests for theoretical estimates                                  |
+| `benchmark/token/live.go`                                             | Builds in-process graph, calls Claude API, measures input_tokens |
+| `benchmark/token/live_test.go`                                        | Tests live runner with mock HTTP                                 |
+| `benchmark/report/report.go`                                          | Takes `Results`, produces markdown                               |
+| `benchmark/report/report_test.go`                                     | Golden-file test for report output                               |
+| `benchmark/cmd/main.go`                                               | CLI entrypoint: flags, orchestration, writes report              |
+| `.github/workflows/benchmark.yml`                                     | Auto-runs theoretical benchmark on main push, commits RESULTS.md |
+| `benchmark/RESULTS.md`                                                | Generated; first committed in Task 7                             |
+| `docs/benchmarks.md`                                                  | MkDocs page mirroring RESULTS.md                                 |
+| `docs/examples/ownership-queries.md`                                  | Example: ownership questions                                     |
+| `docs/examples/impact-analysis.md`                                    | Example: impact analysis                                         |
+| `docs/examples/dependency-audit.md`                                   | Example: dependency audit                                        |
 
 ### Modified files
-| Path | Change |
-|------|--------|
-| `main.go` | Intercept `--benchmark` before env var checks, dispatch to `benchmark/cmd` |
-| `Makefile` | Add `benchmark` and `benchmark-live` targets |
-| `README.md` | Add badges, terminal recording note, "Why DocScout" table |
-| `ROADMAP.md` | Append items 20–24 to Future Work |
-| `mkdocs.yml` | Add Benchmarks and Examples sections to nav |
-| `go.mod` / `go.sum` | Add `github.com/anthropics/anthropic-sdk-go` |
+
+| Path                | Change                                                                     |
+| ------------------- | -------------------------------------------------------------------------- |
+| `main.go`           | Intercept `--benchmark` before env var checks, dispatch to `benchmark/cmd` |
+| `Makefile`          | Add `benchmark` and `benchmark-live` targets                               |
+| `README.md`         | Add badges, terminal recording note, "Why DocScout" table                  |
+| `ROADMAP.md`        | Append items 20–24 to Future Work                                          |
+| `mkdocs.yml`        | Add Benchmarks and Examples sections to nav                                |
+| `go.mod` / `go.sum` | Add `github.com/anthropics/anthropic-sdk-go`                               |
 
 ---
 
 ## Task 1: Synthetic Corpus Fixtures
 
 **Files:**
+
 - Create: `benchmark/testdata/synthetic-org/billing-service/go.mod`
 - Create: `benchmark/testdata/synthetic-org/billing-service/CODEOWNERS`
 - Create: `benchmark/testdata/synthetic-org/billing-service/openapi.yaml`
@@ -263,7 +266,7 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
         "go_version:1.22"
       ],
       "expected_rels": [
-        {"from": "billing-service", "to": "database", "type": "depends_on"}
+        { "from": "billing-service", "to": "database", "type": "depends_on" }
       ],
       "expected_aux": []
     },
@@ -274,12 +277,8 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
       "expected_entity_name": "",
       "expected_entity_type": "",
       "expected_obs_subset": [],
-      "expected_rels": [
-        {"from": "payments-team", "to": "", "type": "owns"}
-      ],
-      "expected_aux": [
-        {"name": "payments-team", "type": "team"}
-      ]
+      "expected_rels": [{ "from": "payments-team", "to": "", "type": "owns" }],
+      "expected_aux": [{ "name": "payments-team", "type": "team" }]
     },
     {
       "id": "billing-openapi",
@@ -289,7 +288,7 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
       "expected_entity_type": "api",
       "expected_obs_subset": ["_integration_source:openapi", "version:1.0.0"],
       "expected_rels": [
-        {"from": "", "to": "Billing API", "type": "exposes_api"}
+        { "from": "", "to": "Billing API", "type": "exposes_api" }
       ],
       "expected_aux": []
     },
@@ -299,10 +298,16 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
       "input_file": "synthetic-org/checkout-service/go.mod",
       "expected_entity_name": "checkout-service",
       "expected_entity_type": "service",
-      "expected_obs_subset": ["go_module:github.com/synth-org/checkout-service"],
+      "expected_obs_subset": [
+        "go_module:github.com/synth-org/checkout-service"
+      ],
       "expected_rels": [
-        {"from": "checkout-service", "to": "database", "type": "depends_on"},
-        {"from": "checkout-service", "to": "billing-service", "type": "depends_on"}
+        { "from": "checkout-service", "to": "database", "type": "depends_on" },
+        {
+          "from": "checkout-service",
+          "to": "billing-service",
+          "type": "depends_on"
+        }
       ],
       "expected_aux": []
     },
@@ -328,7 +333,7 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
         "version:2.1.0"
       ],
       "expected_rels": [
-        {"from": "payment-worker", "to": "kafka-client", "type": "depends_on"}
+        { "from": "payment-worker", "to": "kafka-client", "type": "depends_on" }
       ],
       "expected_aux": []
     },
@@ -340,11 +345,13 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
       "expected_entity_type": "service",
       "expected_obs_subset": ["_integration_source:asyncapi"],
       "expected_rels": [
-        {"from": "payment-worker", "to": "payment.completed", "type": "publishes_event"}
+        {
+          "from": "payment-worker",
+          "to": "payment.completed",
+          "type": "publishes_event"
+        }
       ],
-      "expected_aux": [
-        {"name": "payment.completed", "type": "event-topic"}
-      ]
+      "expected_aux": [{ "name": "payment.completed", "type": "event-topic" }]
     },
     {
       "id": "frontend-packagejson",
@@ -354,7 +361,7 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
       "expected_entity_type": "service",
       "expected_obs_subset": [],
       "expected_rels": [
-        {"from": "frontend-app", "to": "react", "type": "depends_on"}
+        { "from": "frontend-app", "to": "react", "type": "depends_on" }
       ],
       "expected_aux": []
     },
@@ -365,12 +372,8 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
       "expected_entity_name": "",
       "expected_entity_type": "",
       "expected_obs_subset": [],
-      "expected_rels": [
-        {"from": "alice", "to": "", "type": "owns"}
-      ],
-      "expected_aux": [
-        {"name": "alice", "type": "person"}
-      ]
+      "expected_rels": [{ "from": "alice", "to": "", "type": "owns" }],
+      "expected_aux": [{ "name": "alice", "type": "person" }]
     },
     {
       "id": "auth-gomod",
@@ -388,13 +391,14 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
       "input_file": "synthetic-org/auth-service/auth.proto",
       "expected_entity_name": "",
       "expected_entity_type": "",
-      "expected_obs_subset": ["_integration_source:proto", "proto_package:auth"],
-      "expected_rels": [
-        {"from": "", "to": "AuthService", "type": "provides_grpc"}
+      "expected_obs_subset": [
+        "_integration_source:proto",
+        "proto_package:auth"
       ],
-      "expected_aux": [
-        {"name": "AuthService", "type": "grpc-service"}
-      ]
+      "expected_rels": [
+        { "from": "", "to": "AuthService", "type": "provides_grpc" }
+      ],
+      "expected_aux": [{ "name": "AuthService", "type": "grpc-service" }]
     }
   ]
 }
@@ -405,6 +409,7 @@ This file defines the exact `ParsedFile` output each parser must produce for eac
 ```bash
 go build ./benchmark/...
 ```
+
 Expected: no output (success)
 
 - [ ] **Step 16: Commit**
@@ -419,6 +424,7 @@ rtk git commit -m "bench: add synthetic corpus fixtures and ground truth (11 fil
 ## Task 2: Accuracy Runner
 
 **Files:**
+
 - Create: `benchmark/accuracy/runner.go`
 - Create: `benchmark/accuracy/runner_test.go`
 
@@ -432,7 +438,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
 )
 
 func TestRunnerAllCasesPass(t *testing.T) {
@@ -455,6 +461,7 @@ func TestRunnerAllCasesPass(t *testing.T) {
 ```bash
 go test ./benchmark/accuracy/... -v -run TestRunnerAllCasesPass
 ```
+
 Expected: FAIL — `benchmark/accuracy` does not exist yet.
 
 - [ ] **Step 3: Create the types in runner.go**
@@ -471,7 +478,7 @@ import (
 	"io/fs"
 	"slices"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 // TestCase is one entry in ground_truth.json.
@@ -715,6 +722,7 @@ func boolInt(b bool) int {
 ```bash
 go test ./benchmark/accuracy/... -v -run TestRunnerAllCasesPass
 ```
+
 Expected: PASS. If a case fails, the error message names the parser and shows TP/FP/FN — use that to fix `ground_truth.json` if the parser behavior differs from what's specified in the fixture comments.
 
 - [ ] **Step 6: Add edge-case tests**
@@ -739,19 +747,22 @@ func TestRunnerUnknownParser(t *testing.T) {
 ```
 
 Fix the import — `testing/fstest` must be added to the import block in the test file:
+
 ```go
 import (
 	"os"
 	"testing"
 	"testing/fstest"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
 )
 ```
 
 Run:
+
 ```bash
 go test ./benchmark/accuracy/... -v
 ```
+
 Expected: both tests PASS.
 
 - [ ] **Step 7: Commit**
@@ -766,6 +777,7 @@ rtk git commit -m "bench: add accuracy runner with F1 scoring against synthetic 
 ## Task 3: Theoretical Token Model
 
 **Files:**
+
 - Create: `benchmark/token/model.go`
 - Create: `benchmark/token/model_test.go`
 
@@ -778,7 +790,7 @@ package token_test
 import (
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 func TestEstimateNaiveTokensAllQuestions(t *testing.T) {
@@ -818,6 +830,7 @@ func TestEstimateDocScoutTokensAllQuestions(t *testing.T) {
 ```bash
 go test ./benchmark/token/... -v -run TestEstimate
 ```
+
 Expected: FAIL — `benchmark/token` does not exist.
 
 - [ ] **Step 3: Implement model.go**
@@ -925,6 +938,7 @@ func AllEstimates() []QuestionEstimate {
 ```bash
 go test ./benchmark/token/... -v -run TestEstimate
 ```
+
 Expected: all three tests PASS.
 
 - [ ] **Step 5: Commit**
@@ -939,6 +953,7 @@ rtk git commit -m "bench: add theoretical token model with per-question estimate
 ## Task 4: Live Token Runner
 
 **Files:**
+
 - Create: `benchmark/token/live.go`
 - Create: `benchmark/token/live_test.go`
 - Modify: `go.mod` (add Anthropic SDK)
@@ -948,6 +963,7 @@ rtk git commit -m "bench: add theoretical token model with per-question estimate
 ```bash
 go get github.com/anthropics/anthropic-sdk-go@latest
 ```
+
 Expected: go.mod and go.sum updated. Verify: `grep anthropic go.mod` shows the dependency.
 
 - [ ] **Step 2: Write the failing test (mock-based)**
@@ -961,7 +977,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 func TestLiveRunnerRejectsEmptyAPIKey(t *testing.T) {
@@ -998,6 +1014,7 @@ func TestSavingsPct(t *testing.T) {
 ```bash
 go test ./benchmark/token/... -v -run TestLiveRunnerRejectsEmptyAPIKey
 ```
+
 Expected: FAIL — `token.NewLiveRunner` and `token.ErrNoAPIKey` don't exist yet.
 
 - [ ] **Step 4: Implement live.go**
@@ -1107,6 +1124,7 @@ func (r *LiveRunner) countInputTokens(ctx context.Context, question, contextCont
 ```bash
 go test ./benchmark/token/... -v
 ```
+
 Expected: `TestLiveRunnerRejectsEmptyAPIKey` PASS, `TestSavingsPct` PASS.
 
 - [ ] **Step 6: Commit**
@@ -1121,6 +1139,7 @@ rtk git commit -m "bench: add live token runner with Claude API key security"
 ## Task 5: Report Generator
 
 **Files:**
+
 - Create: `benchmark/report/report.go`
 - Create: `benchmark/report/report_test.go`
 
@@ -1134,9 +1153,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/report"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/report"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 func TestReportContainsRequiredSections(t *testing.T) {
@@ -1178,6 +1197,7 @@ func TestReportContainsRequiredSections(t *testing.T) {
 ```bash
 go test ./benchmark/report/... -v
 ```
+
 Expected: FAIL — package does not exist.
 
 - [ ] **Step 3: Implement report.go**
@@ -1193,8 +1213,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 // Input holds everything needed to generate a benchmark report.
@@ -1312,6 +1332,7 @@ Add `"slices"` to the imports in `report.go`.
 ```bash
 go test ./benchmark/report/... -v
 ```
+
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -1326,6 +1347,7 @@ rtk git commit -m "bench: add markdown report generator"
 ## Task 6: `--benchmark` CLI Entrypoint
 
 **Files:**
+
 - Create: `benchmark/cmd/main.go`
 - Modify: `main.go` (early intercept)
 
@@ -1347,10 +1369,10 @@ import (
 	"io/fs"
 	"os"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/report"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/testdata"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/report"
+	"github.com/doc-scout/mcp-server/benchmark/testdata"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 // Run is the entry point called from main.go when --benchmark is the first arg.
@@ -1493,8 +1515,9 @@ func main() {
 ```
 
 Add the import at the top of `main.go`:
+
 ```go
-benchmarkcmd "github.com/leonancarvalho/docscout-mcp/benchmark/cmd"
+benchmarkcmd "github.com/doc-scout/mcp-server/benchmark/cmd"
 ```
 
 - [ ] **Step 3: Build and smoke-test**
@@ -1502,7 +1525,9 @@ benchmarkcmd "github.com/leonancarvalho/docscout-mcp/benchmark/cmd"
 ```bash
 go build -o docscout-mcp . && ./docscout-mcp --benchmark --dry-run
 ```
+
 Expected output:
+
 ```
 Benchmark dry-run
   mode:          theoretical
@@ -1515,6 +1540,7 @@ Benchmark dry-run
 ```bash
 ./docscout-mcp --benchmark --output - 2>/dev/null | head -20
 ```
+
 Expected: markdown output starting with `# DocScout-MCP Benchmark Results`.
 
 - [ ] **Step 5: Commit**
@@ -1529,6 +1555,7 @@ rtk git commit -m "bench: add --benchmark CLI mode wired into main binary"
 ## Task 7: Makefile Targets + CI Workflow + Initial RESULTS.md
 
 **Files:**
+
 - Modify: `Makefile`
 - Create: `.github/workflows/benchmark.yml`
 - Create: `benchmark/RESULTS.md` (generated)
@@ -1558,7 +1585,9 @@ Also add `benchmark benchmark-live benchmark-dry` to the `.PHONY` line.
 ```bash
 make benchmark
 ```
+
 Expected:
+
 ```
 Running accuracy benchmark...
 Accuracy: overall F1=X.XX
@@ -1566,12 +1595,15 @@ Report written to benchmark/RESULTS.md
 ```
 
 Inspect the output:
+
 ```bash
 head -30 benchmark/RESULTS.md
 ```
+
 Expected: markdown with accuracy table and token efficiency table.
 
 If any parser F1 < 0.95, fix `ground_truth.json` to match actual parser output. Run the accuracy test to debug:
+
 ```bash
 go test ./benchmark/accuracy/... -v -run TestRunnerAllCasesPass
 ```
@@ -1585,9 +1617,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'benchmark/**'
-      - 'scanner/parser/**'
-      - 'main.go'
+      - "benchmark/**"
+      - "scanner/parser/**"
+      - "main.go"
 
 permissions:
   contents: write
@@ -1624,6 +1656,7 @@ rtk git commit -m "bench: add Makefile targets, CI workflow, and initial RESULTS
 ## Task 8: README, ROADMAP, and Documentation Updates
 
 **Files:**
+
 - Modify: `README.md`
 - Modify: `ROADMAP.md`
 - Create: `docs/benchmarks.md`
@@ -1650,11 +1683,11 @@ Find the "## See It In Action" section. Add a new section before it:
 ```markdown
 ## Why DocScout?
 
-| Approach | Accuracy | Token Cost | Setup |
-|---|---|---|---|
-| AI reads files raw | Hallucination-prone | ~27,000/question | None |
-| Backstage catalog | High (manual) | Medium | Heavy (infra team) |
-| **DocScout-MCP** | **Verified (F1 0.97)** | **~290/question** | **5 minutes** |
+| Approach           | Accuracy               | Token Cost        | Setup              |
+| ------------------ | ---------------------- | ----------------- | ------------------ |
+| AI reads files raw | Hallucination-prone    | ~27,000/question  | None               |
+| Backstage catalog  | High (manual)          | Medium            | Heavy (infra team) |
+| **DocScout-MCP**   | **Verified (F1 0.97)** | **~290/question** | **5 minutes**      |
 
 DocScout pre-computes the answer graph from your repos so your AI never reads files to answer architecture questions. See [benchmark/RESULTS.md](benchmark/RESULTS.md) for methodology.
 ```
@@ -1687,10 +1720,10 @@ Find the "## Future Work" section in `ROADMAP.md` and append after the existing 
 
 - [ ] **Step 4: Create docs/benchmarks.md**
 
-```markdown
+````markdown
 # Benchmarks
 
-This page reports DocScout-MCP's accuracy and token efficiency, measured against a [synthetic corpus](https://github.com/leonancarvalho/docscout-mcp/tree/main/benchmark/testdata) with committed ground truth.
+This page reports DocScout-MCP's accuracy and token efficiency, measured against a [synthetic corpus](https://github.com/doc-scout/mcp-server/tree/main/benchmark/testdata) with committed ground truth.
 
 ## Reproducing Results
 
@@ -1701,13 +1734,15 @@ make benchmark
 # Live (requires ANTHROPIC_API_KEY)
 make benchmark-live
 ```
+````
 
-For the full methodology, see the [design spec](https://github.com/leonancarvalho/docscout-mcp/blob/main/docs/superpowers/specs/2026-04-16-community-credibility-benchmarks-design.md).
+For the full methodology, see the [design spec](https://github.com/doc-scout/mcp-server/blob/main/docs/superpowers/specs/2026-04-16-community-credibility-benchmarks-design.md).
 
 ---
 
 {{ read_file("../../benchmark/RESULTS.md") }}
-```
+
+````
 
 If the MkDocs `read_file` macro is not available, copy the RESULTS.md content directly and add a note: `*Last updated: [date] · [version]*`.
 
@@ -1723,14 +1758,16 @@ Common questions DocScout answers with a single tool call.
 Without DocScout, an AI must read CODEOWNERS files across multiple repos. With DocScout:
 
 **Tool call:**
-```
+````
+
 search_nodes(query="checkout-service", type="service")
 → Entity: checkout-service (service)
-  Relations: checkout-team → owns → checkout-service
+Relations: checkout-team → owns → checkout-service
 
 open_nodes(names=["checkout-team"])
 → Entity: checkout-team (team)
-  Observations: github_handle:@myorg/checkout-team
+Observations: github_handle:@myorg/checkout-team
+
 ```
 
 **Claude response:** "The checkout service is owned by @myorg/checkout-team."
@@ -1743,11 +1780,13 @@ Token cost: ~180 tokens vs ~14,776 tokens reading CODEOWNERS from 8 repos.
 
 **Tool call:**
 ```
+
 list_entities(type="team")
 → [payments-team, checkout-team, platform-team, ...]
 
 traverse_graph(entity="payments-team", relation_type="owns", direction="outgoing")
 → [billing-service, payment-worker, fraud-service, risk-service]
+
 ```
 
 **Claude response:** "payments-team owns 4 services: billing-service, payment-worker, fraud-service, risk-service."
@@ -1764,14 +1803,16 @@ Answer "what breaks if I change X?" without reading any files.
 
 **Tool call:**
 ```
+
 traverse_graph(entity="database", direction="incoming", depth=3)
 → {
-    "entities": [
-      {"name": "billing-service", "distance": 1},
-      {"name": "checkout-service", "distance": 1},
-      {"name": "frontend-app", "distance": 2}
-    ]
-  }
+"entities": [
+{"name": "billing-service", "distance": 1},
+{"name": "checkout-service", "distance": 1},
+{"name": "frontend-app", "distance": 2}
+]
+}
+
 ```
 
 **Claude response:** "Shutting down `database` will directly impact billing-service and checkout-service. frontend-app has an indirect dependency via checkout-service."
@@ -1780,12 +1821,15 @@ traverse_graph(entity="database", direction="incoming", depth=3)
 
 **Tool call:**
 ```
+
 find_path(from="frontend-app", to="billing-service")
 → path: frontend-app → checkout-service → billing-service (length: 2)
 
 traverse_graph(entity="Billing API", direction="incoming", relation_type="exposes_api")
 → [billing-service]
+
 ```
+
 ```
 
 - [ ] **Step 7: Create docs/examples/dependency-audit.md**
@@ -1799,11 +1843,13 @@ Find services with risky or outdated dependencies.
 
 **Tool call:**
 ```
+
 search_nodes(query="pgx")
 → Entity: pgx (service — dependency node)
 
 traverse_graph(entity="pgx", direction="incoming", relation_type="depends_on")
 → [billing-service (distance 1), auth-service (distance 1)]
+
 ```
 
 **Claude response:** "billing-service and auth-service have a direct depends_on edge to pgx."
@@ -1812,6 +1858,7 @@ traverse_graph(entity="pgx", direction="incoming", relation_type="depends_on")
 
 **Tool call:**
 ```
+
 list_entities(type="service")
 → [billing-service, checkout-service, payment-worker, frontend-app, auth-service]
 
@@ -1820,6 +1867,7 @@ list_entities(type="api")
 
 list_relations(type="exposes_api")
 → [billing-service → exposes_api → Billing API]
+
 ```
 
 **Claude response:** "checkout-service, payment-worker, frontend-app, and auth-service have no OpenAPI spec (no exposes_api relation found)."
@@ -1834,9 +1882,9 @@ nav:
   # ... existing entries ...
   - Benchmarks: benchmarks.md
   - Examples:
-    - Ownership Queries: examples/ownership-queries.md
-    - Impact Analysis: examples/impact-analysis.md
-    - Dependency Audits: examples/dependency-audit.md
+      - Ownership Queries: examples/ownership-queries.md
+      - Impact Analysis: examples/impact-analysis.md
+      - Dependency Audits: examples/dependency-audit.md
 ```
 
 - [ ] **Step 9: Verify docs build**
@@ -1844,6 +1892,7 @@ nav:
 ```bash
 cd docs && pip install -r requirements.txt -q && mkdocs build --strict 2>&1 | tail -5
 ```
+
 Expected: `INFO - Documentation built in X.X seconds`
 
 - [ ] **Step 10: Commit all documentation**
@@ -1875,6 +1924,7 @@ mkdocs build --strict --config-file mkdocs.yml
 ```
 
 Spec coverage check:
+
 - [x] Section 1 (Accuracy Benchmark): Tasks 1–2
 - [x] Section 2 (Token Efficiency): Tasks 3–4
 - [x] Section 3 (Published Report + README): Tasks 7–8

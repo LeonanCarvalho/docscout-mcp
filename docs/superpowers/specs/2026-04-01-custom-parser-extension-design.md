@@ -121,7 +121,7 @@ func (r *ParserRegistry) TargetFilenames() []string      // union of all Filenam
 // mypkg/pipfile/parser.go
 package pipfile
 
-import "github.com/leonancarvalho/docscout-mcp/scanner/parser"
+import "github.com/doc-scout/mcp-server/scanner/parser"
 
 func init() { parser.Register(&Parser{}) }
 
@@ -133,6 +133,7 @@ func (p *Parser) Parse(data []byte) (parser.ParsedFile, error) { ... }
 ```
 
 **User's `main.go` addition:**
+
 ```go
 import _ "mypkg/pipfile" // triggers init(), zero other changes required
 ```
@@ -254,38 +255,39 @@ Phase 3:  archiveStale     (unchanged)
 
 ## Error Handling
 
-| Scenario | Behaviour |
-|---|---|
-| `FileParser.Parse()` returns error | `Run()` returns immediately with wrapped error; scan is aborted |
-| `FileParser.Parse()` panics | Recovered by `withRecovery` in the MCP tool layer (does not apply to indexer); indexer does **not** recover panics from parsers — let them propagate to surface bugs |
-| Duplicate `FileType()` in `Register()` | Panic at startup — caught immediately during development |
-| `Filenames()` overlap between two parsers | Panics at registry construction (checked in `Register`) |
+| Scenario                                  | Behaviour                                                                                                                                                            |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `FileParser.Parse()` returns error        | `Run()` returns immediately with wrapped error; scan is aborted                                                                                                      |
+| `FileParser.Parse()` panics               | Recovered by `withRecovery` in the MCP tool layer (does not apply to indexer); indexer does **not** recover panics from parsers — let them propagate to surface bugs |
+| Duplicate `FileType()` in `Register()`    | Panic at startup — caught immediately during development                                                                                                             |
+| `Filenames()` overlap between two parsers | Panics at registry construction (checked in `Register`)                                                                                                              |
 
 ---
 
 ## Files Changed
 
-| File | Change |
-|---|---|
-| `scanner/parser/extension.go` | **New** — `FileParser` interface, `ParsedFile`, `ParsedRelation` |
-| `scanner/parser/registry.go` | **New** — `ParserRegistry`, global `Default`, `Register()` func |
-| `scanner/parser/gomod.go` | Add `FileType()` + `Filenames()` methods; keep `ParseGoMod()` as helper |
-| `scanner/parser/packagejson.go` | Same pattern |
-| `scanner/parser/pom.go` | Same pattern |
-| `scanner/parser/codeowners.go` | Same pattern |
-| `scanner/parser/catalog.go` | Same pattern; merge strategy moves here |
-| `scanner/scanner.go` | Constructor takes `*ParserRegistry`; `DefaultTargetFiles` + `classifyFile` read from registry |
-| `indexer/indexer.go` | Constructor takes `*ParserRegistry`; `runParsers()` + `upsertParsedFile()` replace 5 phases + 5 upsert methods |
-| `main.go` | Register built-ins; pass `parser.Default` to scanner + indexer constructors |
-| `scanner/parser/registry_test.go` | **New** — unit tests for registry |
-| `indexer/indexer_test.go` | Add mock-parser integration test |
-| `AGENTS.md` | Update §7 with `FileParser` contract and registration guide |
+| File                              | Change                                                                                                         |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `scanner/parser/extension.go`     | **New** — `FileParser` interface, `ParsedFile`, `ParsedRelation`                                               |
+| `scanner/parser/registry.go`      | **New** — `ParserRegistry`, global `Default`, `Register()` func                                                |
+| `scanner/parser/gomod.go`         | Add `FileType()` + `Filenames()` methods; keep `ParseGoMod()` as helper                                        |
+| `scanner/parser/packagejson.go`   | Same pattern                                                                                                   |
+| `scanner/parser/pom.go`           | Same pattern                                                                                                   |
+| `scanner/parser/codeowners.go`    | Same pattern                                                                                                   |
+| `scanner/parser/catalog.go`       | Same pattern; merge strategy moves here                                                                        |
+| `scanner/scanner.go`              | Constructor takes `*ParserRegistry`; `DefaultTargetFiles` + `classifyFile` read from registry                  |
+| `indexer/indexer.go`              | Constructor takes `*ParserRegistry`; `runParsers()` + `upsertParsedFile()` replace 5 phases + 5 upsert methods |
+| `main.go`                         | Register built-ins; pass `parser.Default` to scanner + indexer constructors                                    |
+| `scanner/parser/registry_test.go` | **New** — unit tests for registry                                                                              |
+| `indexer/indexer_test.go`         | Add mock-parser integration test                                                                               |
+| `AGENTS.md`                       | Update §7 with `FileParser` contract and registration guide                                                    |
 
 ---
 
 ## Testing Strategy
 
 **Unit — `scanner/parser/registry_test.go`:**
+
 - `Register` panics on duplicate `FileType()`
 - `Register` panics on `Filenames()` overlap between two parsers
 - `TargetFilenames()` returns the union of all registered parsers
@@ -293,10 +295,12 @@ Phase 3:  archiveStale     (unchanged)
 - Concurrent `Register` + `Get` passes `-race`
 
 **Unit — each built-in parser:**
+
 - Existing `TestParse*` tests are unchanged
 - New: `FileType()` and `Filenames()` return expected values
 
 **Integration — `indexer/indexer_test.go`:**
+
 - Register a `mockParser` via `parser.NewRegistry()` (isolated from `Default`)
 - Run `AutoIndexer` with a fake repo containing a file of that type
 - Assert: entity created, observations present, relations created

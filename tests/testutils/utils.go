@@ -11,9 +11,9 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/scanner"
-	"github.com/leonancarvalho/docscout-mcp/tools"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/scanner"
+	"github.com/doc-scout/mcp-server/tools"
 )
 
 type MockScanner struct{}

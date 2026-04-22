@@ -25,7 +25,7 @@ spec:
         runAsUser: 1000
       containers:
         - name: docscout-mcp
-          image: ghcr.io/leonancarvalho/docscout-mcp:latest
+          image: ghcr.io/doc-scout/mcp-server:latest
           imagePullPolicy: Always
           ports:
             - name: http

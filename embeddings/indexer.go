@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 const indexBatchSize = 50

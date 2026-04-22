@@ -7,7 +7,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 func setupIntegrationTestDB(t *testing.T) *memory.MemoryService {

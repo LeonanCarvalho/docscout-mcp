@@ -76,7 +76,7 @@ Add the following to your `mcpServers` block:
         "GITHUB_ORG=my-org",
         "-e",
         "SCAN_INTERVAL=30m",
-        "ghcr.io/leonancarvalho/docscout-mcp:latest"
+        "ghcr.io/doc-scout/mcp-server:latest"
       ]
     }
   }

@@ -11,9 +11,9 @@ keywords:
   - documentation
   - github
   - kubernetes
-home: https://github.com/leonancarvalho/docscout-mcp
+home: https://github.com/doc-scout/mcp-server
 sources:
-  - https://github.com/leonancarvalho/docscout-mcp
+  - https://github.com/doc-scout/mcp-server
 maintainers:
   - name: Leonan Carvalho
     url: https://github.com/leonancarvalho

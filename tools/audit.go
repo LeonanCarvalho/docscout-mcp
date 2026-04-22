@@ -14,7 +14,7 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 // GraphAuditLogger is a GraphStore decorator that logs every mutation operation.

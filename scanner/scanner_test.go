@@ -17,7 +17,7 @@ import (
 
 	"github.com/google/go-github/v60/github"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 // testRegistry builds an isolated registry for scanner tests.

@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/leonancarvalho/docscout-mcp/health"
+	"github.com/doc-scout/mcp-server/health"
 )
 
 type stubProvider struct {

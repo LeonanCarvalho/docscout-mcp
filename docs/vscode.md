@@ -34,11 +34,17 @@ VS Code supports MCP servers natively through its Copilot Chat extension.
       "docscout": {
         "type": "stdio",
         "command": "docker",
-        "args": ["run", "-i", "--rm",
-          "-e", "GITHUB_TOKEN=github_pat_...",
-          "-e", "GITHUB_ORG=my-org",
-          "-e", "SCAN_INTERVAL=1h",
-          "ghcr.io/leonancarvalho/docscout-mcp:latest"
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "GITHUB_TOKEN=github_pat_...",
+          "-e",
+          "GITHUB_ORG=my-org",
+          "-e",
+          "SCAN_INTERVAL=1h",
+          "ghcr.io/doc-scout/mcp-server:latest"
         ]
       }
     }

@@ -12,27 +12,28 @@
 
 ## File Map
 
-| Action | Path | Responsibility |
-|---|---|---|
-| Create | `embeddings/provider.go` | `EmbeddingProvider` interface + `Config` + `NewProvider` factory |
-| Create | `embeddings/similarity.go` | `CosineSimilarity`, `EntityText`, `sha256hex` |
-| Create | `embeddings/store.go` | `VectorStore`: DB models, migrate, encode/decode, upsert, load, delete |
-| Create | `embeddings/openai.go` | OpenAI REST client |
-| Create | `embeddings/ollama.go` | Ollama REST client |
-| Create | `embeddings/indexer.go` | `Indexer`: IndexDocs, IndexEntities, ScheduleEntities (debounce) |
-| Create | `embeddings/searcher.go` | `SemanticSearcher`: SearchDocs, SearchEntities, facade methods |
-| Modify | `memory/content.go` | Add `DocRecord` + `ListDocs(repo string)` to `ContentCache` |
-| Create | `tools/semantic_search.go` | MCP tool definition + handler |
-| Modify | `tools/ports.go` | Add `SemanticSearch` interface |
-| Modify | `tools/tools.go` | Add `semantic SemanticSearch` param to `Register`; wire tool |
-| Modify | `main.go` | Init provider, VectorStore, Indexer, Searcher; hook post-scan; update Register calls |
-| Create | `tests/semantic_search/semantic_search_test.go` | End-to-end MCP integration test |
+| Action | Path                                            | Responsibility                                                                       |
+| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Create | `embeddings/provider.go`                        | `EmbeddingProvider` interface + `Config` + `NewProvider` factory                     |
+| Create | `embeddings/similarity.go`                      | `CosineSimilarity`, `EntityText`, `sha256hex`                                        |
+| Create | `embeddings/store.go`                           | `VectorStore`: DB models, migrate, encode/decode, upsert, load, delete               |
+| Create | `embeddings/openai.go`                          | OpenAI REST client                                                                   |
+| Create | `embeddings/ollama.go`                          | Ollama REST client                                                                   |
+| Create | `embeddings/indexer.go`                         | `Indexer`: IndexDocs, IndexEntities, ScheduleEntities (debounce)                     |
+| Create | `embeddings/searcher.go`                        | `SemanticSearcher`: SearchDocs, SearchEntities, facade methods                       |
+| Modify | `memory/content.go`                             | Add `DocRecord` + `ListDocs(repo string)` to `ContentCache`                          |
+| Create | `tools/semantic_search.go`                      | MCP tool definition + handler                                                        |
+| Modify | `tools/ports.go`                                | Add `SemanticSearch` interface                                                       |
+| Modify | `tools/tools.go`                                | Add `semantic SemanticSearch` param to `Register`; wire tool                         |
+| Modify | `main.go`                                       | Init provider, VectorStore, Indexer, Searcher; hook post-scan; update Register calls |
+| Create | `tests/semantic_search/semantic_search_test.go` | End-to-end MCP integration test                                                      |
 
 ---
 
 ### Task 1: `EmbeddingProvider` interface + cosine similarity utilities
 
 **Files:**
+
 - Create: `embeddings/provider.go`
 - Create: `embeddings/similarity.go`
 - Create: `embeddings/similarity_test.go`
@@ -47,8 +48,8 @@ import (
 	"math"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 func TestCosineSimilarity_Identical(t *testing.T) {
@@ -111,7 +112,7 @@ cd /mnt/e/DEV/mcpdocs/.worktrees/feat-semantic-search
 go test ./embeddings/...
 ```
 
-Expected: `cannot find package "github.com/leonancarvalho/docscout-mcp/embeddings"`
+Expected: `cannot find package "github.com/doc-scout/mcp-server/embeddings"`
 
 - [ ] **Step 3: Create `embeddings/provider.go`**
 
@@ -193,7 +194,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 // CosineSimilarity returns the cosine similarity in [-1, 1] between two equal-length
@@ -254,6 +255,7 @@ git commit -m "feat(embeddings): add EmbeddingProvider interface and cosine simi
 ### Task 2: VectorStore — DB schema, encode/decode, upsert, load
 
 **Files:**
+
 - Create: `embeddings/store.go`
 - Create: `embeddings/store_test.go`
 
@@ -268,8 +270,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 var storeCounter atomic.Int64
@@ -528,6 +530,7 @@ git commit -m "feat(embeddings): add VectorStore with float32 BLOB encoding and 
 ### Task 3: OpenAI embedding provider
 
 **Files:**
+
 - Create: `embeddings/openai.go`
 - Create: `embeddings/openai_test.go`
 
@@ -544,7 +547,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
+	"github.com/doc-scout/mcp-server/embeddings"
 )
 
 func TestOpenAIProvider_Embed(t *testing.T) {
@@ -732,6 +735,7 @@ git commit -m "feat(embeddings): add OpenAI embedding provider with httptest-ver
 ### Task 4: Ollama embedding provider
 
 **Files:**
+
 - Create: `embeddings/ollama.go`
 - Create: `embeddings/ollama_test.go`
 
@@ -748,7 +752,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
+	"github.com/doc-scout/mcp-server/embeddings"
 )
 
 func TestOllamaProvider_Embed(t *testing.T) {
@@ -915,6 +919,7 @@ git commit -m "feat(embeddings): add Ollama embedding provider"
 ### Task 5: `memory.DocRecord` + `ContentCache.ListDocs`
 
 **Files:**
+
 - Modify: `memory/content.go`
 - Modify: `memory/content_test.go`
 
@@ -1038,6 +1043,7 @@ git commit -m "feat(memory): add DocRecord and ContentCache.ListDocs for semanti
 ### Task 6: Indexer — IndexDocs, IndexEntities, ScheduleEntities
 
 **Files:**
+
 - Create: `embeddings/indexer.go`
 - Create: `embeddings/indexer_test.go`
 
@@ -1053,8 +1059,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 var idxCounter atomic.Int64
@@ -1171,7 +1177,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 const indexBatchSize = 50
@@ -1384,6 +1390,7 @@ git commit -m "feat(embeddings): add Indexer with hash-based staleness detection
 ### Task 7: SemanticSearcher — SearchDocs, SearchEntities
 
 **Files:**
+
 - Create: `embeddings/searcher.go`
 - Create: `embeddings/searcher_test.go`
 
@@ -1400,8 +1407,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 var searchCounter atomic.Int64
@@ -1528,7 +1535,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 const disabledMsg = "semantic search not enabled: set DOCSCOUT_EMBED_OPENAI_KEY or DOCSCOUT_EMBED_OLLAMA_URL"
@@ -1768,6 +1775,7 @@ git commit -m "feat(embeddings): add SemanticSearcher with staleness-aware doc a
 ### Task 8: MCP tool, ports.go, tools.go, main.go wiring
 
 **Files:**
+
 - Create: `tools/semantic_search.go`
 - Modify: `tools/ports.go`
 - Modify: `tools/tools.go`
@@ -1798,9 +1806,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/scanner"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/scanner"
 )
 ```
 
@@ -1819,7 +1827,7 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
+	"github.com/doc-scout/mcp-server/embeddings"
 )
 
 type SemanticSearchArgs struct {
@@ -1995,7 +2003,7 @@ if semanticSrv != nil {
 }
 ```
 
-Add `"github.com/leonancarvalho/docscout-mcp/embeddings"` to the import block in `main.go`.
+Add `"github.com/doc-scout/mcp-server/embeddings"` to the import block in `main.go`.
 
 - [ ] **Step 6: Build to verify everything compiles**
 
@@ -2025,6 +2033,7 @@ git commit -m "feat: add semantic_search MCP tool and wire SemanticSearcher into
 ### Task 9: End-to-end integration test
 
 **Files:**
+
 - Create: `tests/semantic_search/semantic_search_test.go`
 
 - [ ] **Step 1: Create the test file**
@@ -2045,10 +2054,10 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/tests/testutils"
-	"github.com/leonancarvalho/docscout-mcp/tools"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/tests/testutils"
+	"github.com/doc-scout/mcp-server/tools"
 )
 
 var testCounter atomic.Int64
@@ -2263,6 +2272,7 @@ git commit -m "test(semantic_search): add end-to-end MCP integration tests"
 ## Self-Review
 
 **Spec coverage check:**
+
 - ✅ EmbeddingProvider interface + OpenAI + Ollama backends → Tasks 1, 3, 4
 - ✅ VectorStore with `content_hash`/`obs_hash` staleness columns → Task 2
 - ✅ FLOAT32 BLOB little-endian encoding → Task 2 (`encodeVector`/`decodeVector`)
@@ -2279,6 +2289,7 @@ git commit -m "test(semantic_search): add end-to-end MCP integration tests"
 - ✅ `ScheduleIndexEntities` called from create_entities, add_observations, delete_entities → Task 8
 
 **Type consistency check:**
+
 - `DocResult`, `EntityResult` defined in `embeddings/searcher.go`, used in `tools/ports.go` and `tools/semantic_search.go` — consistent
 - `DocStore` interface defined once in `embeddings/indexer.go`, used by both Indexer and Searcher — consistent
 - `sha256hex` and `EntityText` defined in `embeddings/similarity.go`, used in indexer.go and searcher.go — consistent

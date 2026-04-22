@@ -2,13 +2,13 @@
 
 Thank you for your interest in contributing to DocScout-MCP!
 
-**Full contributing guide:** [leonancarvalho.github.io/docscout-mcp/contributing/](https://leonancarvalho.github.io/docscout-mcp/contributing/)
+**Full contributing guide:** [doc-scout.github.io/mcp-server/contributing/](https://doc-scout.github.io/mcp-server/contributing/)
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/leonancarvalho/docscout-mcp
-cd docscout-mcp
+git clone https://github.com/doc-scout/mcp-server
+cd mcp-server
 go mod download
 go test ./...
 ```

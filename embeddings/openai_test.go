@@ -11,7 +11,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
+	"github.com/doc-scout/mcp-server/embeddings"
 )
 
 func TestOpenAIProvider_Embed(t *testing.T) {

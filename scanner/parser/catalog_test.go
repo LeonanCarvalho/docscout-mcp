@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 func TestParseCatalog_Component(t *testing.T) {

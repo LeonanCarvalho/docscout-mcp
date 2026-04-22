@@ -1,4 +1,4 @@
-module github.com/leonancarvalho/docscout-mcp
+module github.com/doc-scout/mcp-server
 
 go 1.26.1
 
@@ -6,6 +6,7 @@ require (
 	github.com/anthropics/anthropic-sdk-go v1.37.0
 	github.com/glebarez/sqlite v1.11.0
 	github.com/google/go-github/v60 v60.0.0
+	github.com/google/uuid v1.6.0
 	github.com/modelcontextprotocol/go-sdk v1.4.1
 	golang.org/x/oauth2 v0.36.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -18,7 +19,6 @@ require (
 	github.com/glebarez/go-sqlite v1.22.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/jsonschema-go v0.4.2 // indirect
-	github.com/google/uuid v1.6.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/pgx/v5 v5.9.1 // indirect

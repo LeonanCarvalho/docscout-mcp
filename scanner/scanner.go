@@ -18,7 +18,7 @@ import (
 
 	"github.com/google/go-github/v60/github"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 // DefaultTargetFiles is kept for backward compatibility but is no longer used by New().

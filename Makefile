@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 
 BINARY      := docscout-mcp
-IMAGE       := ghcr.io/leonancarvalho/docscout-mcp
+IMAGE       := ghcr.io/doc-scout/mcp-server
 VERSION     ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
 GOFLAGS     := -ldflags="-s -w -X main.serverVersion=$(VERSION)"
 PLATFORMS   := linux/amd64 linux/arm64

@@ -14,20 +14,20 @@
 
 ## File Map
 
-| File | Action | Responsibility |
-|---|---|---|
-| `scanner/parser/extension.go` | **Create** | `FileParser` interface, `ParsedFile`, `ParsedRelation`, `AuxEntity`, `MergeMode` |
-| `scanner/parser/registry.go` | **Create** | `ParserRegistry`, `Default`, `Register()` convenience func |
-| `scanner/parser/registry_test.go` | **Create** | Unit tests for registry |
-| `scanner/parser/gomod.go` | **Modify** | Add `Parser` struct implementing `FileParser`; keep `ParseGoMod()` helper |
-| `scanner/parser/packagejson.go` | **Modify** | Add `Parser` struct; keep `ParsePackageJSON()` helper |
-| `scanner/parser/pom.go` | **Modify** | Add `Parser` struct; keep `ParsePom()` helper |
-| `scanner/parser/codeowners.go` | **Modify** | Add `Parser` struct; keep `ParseCodeowners()` helper |
-| `scanner/parser/catalog.go` | **Modify** | Add `Parser` struct; move `ParsedRelation` to `extension.go` |
-| `scanner/scanner.go` | **Modify** | `New()` accepts `*parser.ParserRegistry`; `DefaultTargetFiles` computed from registry; `classifyFile` takes registry |
-| `indexer/indexer.go` | **Modify** | `New()` accepts `*parser.ParserRegistry`; `runParsers()` + `upsertParsedFile()` replace 5 phases |
-| `main.go` | **Modify** | Register built-in parsers; pass `parser.Default` to scanner + indexer |
-| `AGENTS.md` | **Modify** | Update §7 with `FileParser` contract and registration guide |
+| File                              | Action     | Responsibility                                                                                                       |
+| --------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------- |
+| `scanner/parser/extension.go`     | **Create** | `FileParser` interface, `ParsedFile`, `ParsedRelation`, `AuxEntity`, `MergeMode`                                     |
+| `scanner/parser/registry.go`      | **Create** | `ParserRegistry`, `Default`, `Register()` convenience func                                                           |
+| `scanner/parser/registry_test.go` | **Create** | Unit tests for registry                                                                                              |
+| `scanner/parser/gomod.go`         | **Modify** | Add `Parser` struct implementing `FileParser`; keep `ParseGoMod()` helper                                            |
+| `scanner/parser/packagejson.go`   | **Modify** | Add `Parser` struct; keep `ParsePackageJSON()` helper                                                                |
+| `scanner/parser/pom.go`           | **Modify** | Add `Parser` struct; keep `ParsePom()` helper                                                                        |
+| `scanner/parser/codeowners.go`    | **Modify** | Add `Parser` struct; keep `ParseCodeowners()` helper                                                                 |
+| `scanner/parser/catalog.go`       | **Modify** | Add `Parser` struct; move `ParsedRelation` to `extension.go`                                                         |
+| `scanner/scanner.go`              | **Modify** | `New()` accepts `*parser.ParserRegistry`; `DefaultTargetFiles` computed from registry; `classifyFile` takes registry |
+| `indexer/indexer.go`              | **Modify** | `New()` accepts `*parser.ParserRegistry`; `runParsers()` + `upsertParsedFile()` replace 5 phases                     |
+| `main.go`                         | **Modify** | Register built-in parsers; pass `parser.Default` to scanner + indexer                                                |
+| `AGENTS.md`                       | **Modify** | Update §7 with `FileParser` contract and registration guide                                                          |
 
 ---
 
@@ -48,6 +48,7 @@ Expected: `Switched to a new branch 'feat/custom-parser-extension'`
 ## Task 2: Create `extension.go` — core types
 
 **Files:**
+
 - Create: `scanner/parser/extension.go`
 
 - [ ] **Step 1: Write the file**
@@ -140,6 +141,7 @@ git commit -m "feat(parser): add FileParser interface and ParsedFile types"
 ## Task 3: Create `registry.go` + registry tests
 
 **Files:**
+
 - Create: `scanner/parser/registry.go`
 - Create: `scanner/parser/registry_test.go`
 
@@ -155,7 +157,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 // stubParser is a minimal FileParser for testing.
@@ -382,6 +384,7 @@ git commit -m "feat(parser): add ParserRegistry with duplicate-detection and thr
 ## Task 4: Migrate `gomod.go` to implement `FileParser`
 
 **Files:**
+
 - Modify: `scanner/parser/gomod.go`
 
 - [ ] **Step 1: Add `Parser` struct and methods at the bottom of `gomod.go`**
@@ -514,6 +517,7 @@ git commit -m "feat(parser): gomod implements FileParser interface"
 ## Task 5: Migrate `packagejson.go`, `pom.go`, `codeowners.go`, `catalog.go`
 
 **Files:**
+
 - Modify: `scanner/parser/packagejson.go`
 - Modify: `scanner/parser/pom.go`
 - Modify: `scanner/parser/codeowners.go`
@@ -742,9 +746,11 @@ git commit -m "feat(parser): all 5 built-in parsers implement FileParser interfa
 Replace the 5 hardcoded phase loops and 5 upsert methods with `runParsers()` + `upsertParsedFile()`.
 
 **Files:**
+
 - Modify: `indexer/indexer.go`
 
 The full replacement for `indexer.go` is shown below. Key changes:
+
 - `AutoIndexer` gains `registry *parser.ParserRegistry` field
 - `New()` gains `registry *parser.ParserRegistry` parameter
 - `Run()` calls `runParsers()` instead of phases 2a-2e
@@ -769,9 +775,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/scanner"
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/scanner"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 // FileGetter fetches the raw content of an indexed documentation file.
@@ -1054,23 +1060,27 @@ git commit -m "refactor(indexer): replace 5 phase loops with generic runParsers 
 ## Task 7: Refactor `scanner/scanner.go` and update `main.go`
 
 **Files:**
+
 - Modify: `scanner/scanner.go`
 - Modify: `main.go`
 
 - [ ] **Step 1: Update `scanner.go` — add registry to `New()` and update `classifyFile()`**
 
 The scanner needs two changes:
+
 1. `New()` accepts a `*parser.ParserRegistry` parameter and computes `targetFiles` from it
 2. `classifyFile()` checks the registry before its hardcoded switch
 
 In `/mnt/e/DEV/mcpdocs/scanner/scanner.go`:
 
 **a)** Add import for the parser package. Locate the import block and add:
+
 ```go
-"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+"github.com/doc-scout/mcp-server/scanner/parser"
 ```
 
 **b)** Replace the `Scanner` struct definition to add a `registry` field:
+
 ```go
 // Scanner manages GitHub org scanning and caching.
 type Scanner struct {
@@ -1096,6 +1106,7 @@ type Scanner struct {
 ```
 
 **c)** Replace the `New()` function:
+
 ```go
 // staticTargetFiles are files indexed as documentation or infra assets that have no
 // registered FileParser (they don't produce graph entities).
@@ -1169,6 +1180,7 @@ func New(client *github.Client, org string, scanInterval time.Duration, targetFi
 **d)** Remove (or keep as deprecated alias) `DefaultTargetFiles` var, replacing with a comment pointing to the registry. Since external callers may reference it, keep it but empty:
 
 Replace the old `DefaultTargetFiles` var with:
+
 ```go
 // DefaultTargetFiles is kept for backward compatibility but is no longer used by New().
 // Target files are now computed from the ParserRegistry at construction time.
@@ -1177,6 +1189,7 @@ var DefaultTargetFiles = []string{}
 ```
 
 **e)** Replace `classifyFile(name string) string` with a version that checks the registry first:
+
 ```go
 // classifyFile returns a type label for a given file path.
 // It checks the scanner's parser registry first, then falls back to hardcoded rules
@@ -1269,11 +1282,13 @@ Each call like `classifyFile(target)` → `s.classifyFile(target)` and `classify
 In `/mnt/e/DEV/mcpdocs/main.go`:
 
 **a)** Add import for parser package:
+
 ```go
-"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+"github.com/doc-scout/mcp-server/scanner/parser"
 ```
 
 **b)** Before the `// --- Scanner ---` section, add parser registration:
+
 ```go
 // --- Parser Registry ---
 parser.Register(parser.GoModParser())
@@ -1284,11 +1299,13 @@ parser.Register(parser.CatalogParser())
 ```
 
 **c)** Update the scanner constructor call (add `parser.Default` as last arg):
+
 ```go
 sc := scanner.New(ghClient, org, scanInterval, targetFiles, scanDirs, infraDirs, extraRepos, repoTopics, repoRegex, parser.Default)
 ```
 
 **d)** Update the indexer constructor call (add `parser.Default` as last arg):
+
 ```go
 ai := indexer.New(sc, auditedGraph, contentCache, parser.Default)
 ```
@@ -1318,6 +1335,7 @@ grep -rn "indexer\.New\|scanner\.New" /mnt/e/DEV/mcpdocs/tests/
 ```
 
 Update any found call sites to pass a registry. For tests, use a test-isolated registry:
+
 ```go
 reg := parser.NewRegistry()
 reg.Register(parser.GoModParser())
@@ -1345,13 +1363,14 @@ git commit -m "refactor(scanner+main): wire ParserRegistry into scanner and inde
 ## Task 8: Update `AGENTS.md` §7
 
 **Files:**
+
 - Modify: `AGENTS.md`
 
 - [ ] **Step 1: Replace §7 with updated content**
 
 Find the `# 7. Scanner Extension Points` section in `/mnt/e/DEV/mcpdocs/AGENTS.md` and replace it with:
 
-```markdown
+````markdown
 # 7. Scanner Extension Points
 
 New manifest parsers implement the `FileParser` interface in `scanner/parser/extension.go` and register with the global `parser.Default` registry via `parser.Register()` in `main.go`.
@@ -1366,6 +1385,7 @@ type FileParser interface {
     Parse(data []byte) (ParsedFile, error)
 }
 ```
+````
 
 ## ParsedFile
 
@@ -1401,14 +1421,15 @@ func (p *Parser) Parse(data []byte) (parser.ParsedFile, error) { ... }
 - Auto-observations `_source:<FileType>` and `_scan_repo:<repo.FullName>` are added by the indexer; parsers must not duplicate them.
 - For suffix-based discovery (e.g. `*.proto`), include a sentinel like `".proto"` in `Filenames()` — the scanner matches files whose name ends with that suffix.
 - Infra directories (`deploy/`, `.github/workflows/`) are scanned by `scanInfraDir`; root-level filenames are scanned by `scanRepo`. New parsers targeting root-level files only need to add their filenames via `Filenames()`.
-```
+
+````
 
 - [ ] **Step 2: Commit**
 
 ```bash
 git add AGENTS.md
 git commit -m "docs(agents): update §7 with FileParser interface and registration guide"
-```
+````
 
 ---
 

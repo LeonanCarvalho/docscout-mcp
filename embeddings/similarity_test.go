@@ -8,8 +8,8 @@ import (
 	"math"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 func TestCosineSimilarity_Identical(t *testing.T) {

@@ -30,7 +30,7 @@ While DocScout-MCP implements path-traversal protection and input sanitization, 
 - Reviewing access controls before exposing the server over HTTP
 - Reporting security issues responsibly via the project's security policy
 
-See [SECURITY.md](docs/security.md) for the full security policy and disclosure process.
+See [SECURITY.md](security.md) for the full security policy and disclosure process.
 
 ## License
 

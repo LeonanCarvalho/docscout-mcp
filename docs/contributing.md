@@ -14,8 +14,8 @@ Thank you for your interest in contributing. DocScout-MCP is an open-source MCP 
 ### Local Setup
 
 ```bash
-git clone https://github.com/leonancarvalho/docscout-mcp
-cd docscout-mcp
+git clone https://github.com/doc-scout/mcp-server
+cd mcp-server
 
 # Install dependencies
 go mod download
@@ -62,13 +62,13 @@ go run .
 Read [Development Guidelines](DEVELOPMENT_GUIDELINES.md) and `AGENTS.md` in the repo root before submitting a PR. Key constraints:
 
 !!! danger "STDIO safety"
-    **Never** use `fmt.Println`, `fmt.Printf`, or anything that writes to `os.Stdout`. The MCP server communicates via JSON-RPC over stdio — free text on stdout corrupts the stream. Use `log/slog` (writes to stderr) instead.
+**Never** use `fmt.Println`, `fmt.Printf`, or anything that writes to `os.Stdout`. The MCP server communicates via JSON-RPC over stdio — free text on stdout corrupts the stream. Use `log/slog` (writes to stderr) instead.
 
 !!! warning "Input validation"
-    All inputs from LLM clients are untrusted. Validate against the internal index before passing to `os.ReadFile` or GitHub API calls.
+All inputs from LLM clients are untrusted. Validate against the internal index before passing to `os.ReadFile` or GitHub API calls.
 
 !!! info "New parsers"
-    New manifest parsers go in `scanner/parser/` and follow the `Parse*` function signature pattern. Register them in the indexer phases and add the filename to `DefaultTargetFiles`.
+New manifest parsers go in `scanner/parser/` and follow the `Parse*` function signature pattern. Register them in the indexer phases and add the filename to `DefaultTargetFiles`.
 
 ---
 
@@ -113,6 +113,6 @@ Every PR must pass the full test suite. New features must include:
 
 ## Reporting Issues
 
-Use [GitHub Issues](https://github.com/leonancarvalho/docscout-mcp/issues) for bugs and feature requests.
+Use [GitHub Issues](https://github.com/doc-scout/mcp-server/issues) for bugs and feature requests.
 
 For **security vulnerabilities**, see [Security](security.md) — do not open a public issue.

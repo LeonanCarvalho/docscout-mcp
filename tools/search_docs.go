@@ -11,7 +11,7 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner"
+	"github.com/doc-scout/mcp-server/scanner"
 )
 
 type SearchDocsArgs struct {

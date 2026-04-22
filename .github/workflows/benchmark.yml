@@ -6,13 +6,13 @@ name: Benchmark
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
   release:
     types: [published]
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Benchmark mode'
+        description: "Benchmark mode"
         type: choice
         options: [theoretical, live]
         default: theoretical
@@ -44,6 +44,8 @@ jobs:
           else
             make benchmark-live VERSION=${{ github.ref_name }}
           fi
+      - name: Print RESULTS.md
+        run: cat benchmark/RESULTS.md
 
       - name: Commit updated RESULTS.md
         uses: stefanzweifel/git-auto-commit-action@v5

@@ -8,7 +8,7 @@ import (
 	"testing"
 	"testing/fstest"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
 )
 
 func TestRunnerAllCasesPass(t *testing.T) {

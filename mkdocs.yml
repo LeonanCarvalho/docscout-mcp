@@ -1,9 +1,12 @@
+# Copyright 2026 Doc Scout
+# SPDX-License-Identifier: AGPL-3.0-only
+
 site_name: DocScout-MCP
-site_url: https://leonancarvalho.github.io/docscout-mcp/
+site_url: https://doc-scout.github.io/mcp-server/
 site_description: Give your AI assistant a reliable map of your entire GitHub organization.
 site_author: Leonan Carvalho
-repo_url: https://github.com/leonancarvalho/docscout-mcp
-repo_name: leonancarvalho/docscout-mcp
+repo_url: https://github.com/doc-scout/mcp-server
+repo_name: doc-scout/mcp-server
 edit_uri: edit/main/docs/
 
 theme:
@@ -43,25 +46,25 @@ nav:
   - Home: index.md
   - How It Works: how-it-works.md
   - Client Integrations:
-    - Overview: integrations.md
-    - Claude Desktop & CLI: claude.md
-    - VS Code: vscode.md
-    - GitHub Copilot: copilot.md
-    - ChatGPT Desktop: chatgpt.md
-    - Google Gemini CLI: gemini.md
-    - Antigravity: antigravity.md
+      - Overview: integrations.md
+      - Claude Desktop & CLI: claude.md
+      - VS Code: vscode.md
+      - GitHub Copilot: copilot.md
+      - ChatGPT Desktop: chatgpt.md
+      - Google Gemini CLI: gemini.md
+      - Antigravity: antigravity.md
   - MCP Tools Reference: tools-reference.md
   - Benchmarks: benchmarks.md
   - Examples:
-    - Ownership Queries: examples/ownership-queries.md
-    - Impact Analysis: examples/impact-analysis.md
-    - Dependency Audits: examples/dependency-audit.md
+      - Ownership Queries: examples/ownership-queries.md
+      - Impact Analysis: examples/impact-analysis.md
+      - Dependency Audits: examples/dependency-audit.md
   - Development:
-    - Contributing: contributing.md
-    - Development Guidelines: DEVELOPMENT_GUIDELINES.md
-    - Roadmap: roadmap.md
-    - Security: security.md
-    - Disclaimer: disclaimer.md
+      - Contributing: contributing.md
+      - Development Guidelines: DEVELOPMENT_GUIDELINES.md
+      - Roadmap: roadmap.md
+      - Security: security.md
+      - Disclaimer: disclaimer.md
 
 not_in_nav: |
   superpowers/
@@ -100,7 +103,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/leonancarvalho/docscout-mcp
+      link: https://github.com/doc-scout/mcp-server
   generator: false
 
 copyright: Copyright &copy; 2026 Leonan Carvalho — AGPL-3.0

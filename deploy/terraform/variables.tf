@@ -16,7 +16,7 @@ variable "image_tag" {
 variable "image_repository" {
   description = "Docker image repository."
   type        = string
-  default     = "ghcr.io/leonancarvalho/docscout-mcp"
+  default     = "ghcr.io/doc-scout/mcp-server"
 }
 
 # ── Required secrets ──────────────────────────────────────────────────────────

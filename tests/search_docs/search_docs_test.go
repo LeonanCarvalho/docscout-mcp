@@ -9,7 +9,7 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/leonancarvalho/docscout-mcp/tests/testutils"
+	"github.com/doc-scout/mcp-server/tests/testutils"
 )
 
 func TestE2E_SearchDocs(t *testing.T) {

@@ -22,15 +22,15 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"golang.org/x/oauth2"
 
-	benchmarkcmd "github.com/leonancarvalho/docscout-mcp/benchmark/cmd"
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/health"
-	"github.com/leonancarvalho/docscout-mcp/indexer"
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/scanner"
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
-	"github.com/leonancarvalho/docscout-mcp/tools"
-	"github.com/leonancarvalho/docscout-mcp/webhook"
+	benchmarkcmd "github.com/doc-scout/mcp-server/benchmark/cmd"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/health"
+	"github.com/doc-scout/mcp-server/indexer"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/scanner"
+	"github.com/doc-scout/mcp-server/scanner/parser"
+	"github.com/doc-scout/mcp-server/tools"
+	"github.com/doc-scout/mcp-server/webhook"
 )
 
 // serverHealthProvider implements health.StatusProvider using the live scanner and graph.

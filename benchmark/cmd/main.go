@@ -13,10 +13,10 @@ import (
 	"io/fs"
 	"os"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/report"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/testdata"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/report"
+	"github.com/doc-scout/mcp-server/benchmark/testdata"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 // testdataFS returns the best available fs.FS for the benchmark testdata.

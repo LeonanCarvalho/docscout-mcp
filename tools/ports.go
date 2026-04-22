@@ -8,9 +8,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
-	"github.com/leonancarvalho/docscout-mcp/scanner"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
+	"github.com/doc-scout/mcp-server/scanner"
 )
 
 // DocumentScanner defines the interface for interacting with the documentation scanner.

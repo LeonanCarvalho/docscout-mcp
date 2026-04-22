@@ -11,7 +11,7 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
+	"github.com/doc-scout/mcp-server/embeddings"
 )
 
 type SemanticSearchArgs struct {

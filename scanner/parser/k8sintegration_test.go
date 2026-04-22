@@ -6,7 +6,7 @@ package parser_test
 import (
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/scanner/parser"
+	"github.com/doc-scout/mcp-server/scanner/parser"
 )
 
 func TestK8sServiceParser_FileTypeAndFilenames(t *testing.T) {

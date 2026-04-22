@@ -4,7 +4,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/leonancarvalho/docscout-mcp
+  repository: ghcr.io/doc-scout/mcp-server
   # tag overrides the appVersion from Chart.yaml when set.
   tag: "latest"
   pullPolicy: Always

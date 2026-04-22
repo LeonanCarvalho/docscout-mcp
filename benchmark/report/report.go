@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/accuracy"
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/accuracy"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 // Input holds everything needed to generate a benchmark report.

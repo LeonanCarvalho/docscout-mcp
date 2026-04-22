@@ -6,7 +6,7 @@ package token_test
 import (
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/benchmark/token"
+	"github.com/doc-scout/mcp-server/benchmark/token"
 )
 
 func TestEstimateNaiveTokensAllQuestions(t *testing.T) {

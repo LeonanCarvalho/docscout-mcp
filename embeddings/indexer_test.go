@@ -1,3 +1,6 @@
+// Copyright 2026 Doc Scout
+// SPDX-License-Identifier: AGPL-3.0-only
+
 // embeddings/indexer_test.go
 
 package embeddings_test
@@ -8,8 +11,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/leonancarvalho/docscout-mcp/embeddings"
-	"github.com/leonancarvalho/docscout-mcp/memory"
+	"github.com/doc-scout/mcp-server/embeddings"
+	"github.com/doc-scout/mcp-server/memory"
 )
 
 var idxCounter atomic.Int64

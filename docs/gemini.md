@@ -6,7 +6,7 @@ The Gemini CLI supports MCP servers through its settings configuration.
 
 Edit (or create) the Gemini CLI settings file:
 
-**Windows:** `%USERPROFILE%\.gemini\settings.json`  
+**Windows:** `%USERPROFILE%\.gemini\settings.json`
 **macOS/Linux:** `~/.gemini/settings.json`
 
 ```json
@@ -31,11 +31,17 @@ Edit (or create) the Gemini CLI settings file:
   "mcpServers": {
     "docscout": {
       "command": "docker",
-      "args": ["run", "-i", "--rm",
-        "-e", "GITHUB_TOKEN=github_pat_...",
-        "-e", "GITHUB_ORG=my-org",
-        "-e", "SCAN_INTERVAL=30m",
-        "ghcr.io/leonancarvalho/docscout-mcp:latest"
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_TOKEN=github_pat_...",
+        "-e",
+        "GITHUB_ORG=my-org",
+        "-e",
+        "SCAN_INTERVAL=30m",
+        "ghcr.io/doc-scout/mcp-server:latest"
       ]
     }
   }
